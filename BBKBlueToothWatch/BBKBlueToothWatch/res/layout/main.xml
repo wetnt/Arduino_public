@@ -1,0 +1,250 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".BBK" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/stateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BOBOKing 蓝牙手表" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd11" />
+
+                <RadioButton android:id="@+id/rd12" />
+
+                <RadioButton android:id="@+id/rd13" />
+
+                <RadioButton android:id="@+id/rd14" />
+
+                <RadioButton android:id="@+id/rd15" />
+
+                <RadioButton android:id="@+id/rd16" />
+
+                <RadioButton android:id="@+id/rd17" />
+
+                <RadioButton android:id="@+id/rd18" />
+            </TableRow>
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd21" />
+
+                <RadioButton android:id="@+id/rd22" />
+
+                <RadioButton android:id="@+id/rd23" />
+
+                <RadioButton android:id="@+id/rd24" />
+
+                <RadioButton android:id="@+id/rd25" />
+
+                <RadioButton android:id="@+id/rd26" />
+
+                <RadioButton android:id="@+id/rd27" />
+
+                <RadioButton android:id="@+id/rd28" />
+            </TableRow>
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd31" />
+
+                <RadioButton android:id="@+id/rd32" />
+
+                <RadioButton android:id="@+id/rd33" />
+
+                <RadioButton android:id="@+id/rd34" />
+
+                <RadioButton android:id="@+id/rd35" />
+
+                <RadioButton android:id="@+id/rd36" />
+
+                <RadioButton android:id="@+id/rd37" />
+
+                <RadioButton android:id="@+id/rd38" />
+            </TableRow>
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd41" />
+
+                <RadioButton android:id="@+id/rd42" />
+
+                <RadioButton android:id="@+id/rd43" />
+
+                <RadioButton android:id="@+id/rd44" />
+
+                <RadioButton android:id="@+id/rd45" />
+
+                <RadioButton android:id="@+id/rd46" />
+
+                <RadioButton android:id="@+id/rd47" />
+
+                <RadioButton android:id="@+id/rd48" />
+            </TableRow>
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd51" />
+
+                <RadioButton android:id="@+id/rd52" />
+
+                <RadioButton android:id="@+id/rd53" />
+
+                <RadioButton android:id="@+id/rd54" />
+
+                <RadioButton android:id="@+id/rd55" />
+
+                <RadioButton android:id="@+id/rd56" />
+
+                <RadioButton android:id="@+id/rd57" />
+
+                <RadioButton android:id="@+id/rd58" />
+            </TableRow>
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd61" />
+
+                <RadioButton android:id="@+id/rd62" />
+
+                <RadioButton android:id="@+id/rd63" />
+
+                <RadioButton android:id="@+id/rd64" />
+
+                <RadioButton android:id="@+id/rd65" />
+
+                <RadioButton android:id="@+id/rd66" />
+
+                <RadioButton android:id="@+id/rd67" />
+
+                <RadioButton android:id="@+id/rd68" />
+            </TableRow>
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd71" />
+
+                <RadioButton android:id="@+id/rd72" />
+
+                <RadioButton android:id="@+id/rd73" />
+
+                <RadioButton android:id="@+id/rd74" />
+
+                <RadioButton android:id="@+id/rd75" />
+
+                <RadioButton android:id="@+id/rd76" />
+
+                <RadioButton android:id="@+id/rd77" />
+
+                <RadioButton android:id="@+id/rd78" />
+            </TableRow>
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rd81" />
+
+                <RadioButton android:id="@+id/rd82" />
+
+                <RadioButton android:id="@+id/rd83" />
+
+                <RadioButton android:id="@+id/rd84" />
+
+                <RadioButton android:id="@+id/rd85" />
+
+                <RadioButton android:id="@+id/rd86" />
+
+                <RadioButton android:id="@+id/rd87" />
+
+                <RadioButton android:id="@+id/rd88" />
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/sendText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/bSend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="发送" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/bLink"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:text="连接设备" />
+
+            <Button
+                android:id="@+id/bShow"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:text="使蓝牙可被发现" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/scrollview"
+            android:padding="5dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp" >
+
+                <LinearLayout
+                    android:id="@+id/chatContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>
