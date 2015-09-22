@@ -1,0 +1,125 @@
+/*
+-----------------------------
+Written by Jonnyboy323
+Version 1.0
+GPS Data Logger
+10/17/11
+-----------------------------
+*/
+
+//Add the Mikal Hart Libraries
+#include <NewSoftSerial.h>
+#include <TinyGPS.h>
+
+//Add the SdFat Libraries
+#include <SdFat.h>
+#include <SdFatUtil.h> 
+#include <ctype.h>
+
+//Create the variables to be used by SdFat Library
+Sd2Card card;
+SdVolume volume;
+SdFile root;
+SdFile file;
+
+#define BUFFSIZE 65
+char buffer[BUFFSIZE]; //This will be a data buffer for writing contents to the file.
+char in_char=0;
+char filename[]="trip.txt";
+
+//Intialize TinyGPS and NewSoftSerial
+TinyGPS gps;
+NewSoftSerial nss(3, 2);
+
+//Intialize GPS variables
+long lat, lon;
+float flat, flon, fspeed, falt, fcourse;
+unsigned long age, date, time, chars;
+int year;
+byte month, day, hour, minute, second, hundredths;
+unsigned short sentences, failed;
+
+bool newdata = false;
+bool feedgps(); 
+
+void setup()
+{
+  nss.begin(4800); //GPS's Buad Rate
+  pinMode(0, INPUT);
+  pinMode(1, OUTPUT);
+  pinMode(10, OUTPUT); 
+  pinMode(13, OUTPUT); //LED Pin 
+  
+  digitalWrite(13, LOW); // Ensure LED starts as off 
+  
+  card.init();            //Initialize the SD card and configure the I/O pins.
+  volume.init(card);      //Initialize a volume on the SD card.
+  root.openRoot(volume);  //Open the root directory in the volume. 
+  
+  //Create file with defined filename
+  file.open(root, filename, O_CREAT | O_APPEND | O_WRITE);    //Open or create the file 'name' in 'root' for writing to the end of the file
+  file.print("year,month,day,hour,minute,seconds,latitude,longitude,altitude(ft),speed(mph),course\n");    //Write the header array to the end of the file.
+  file.close(); //Close the file.
+  
+  // flash LED 5 times when setup is finished
+  for (int i=0; i<4; i++){    
+    digitalWrite(13, HIGH);   // set the LED on
+    delay(1000);              // wait for a second
+    digitalWrite(13, LOW);    // set the LED off 
+  }   
+}
+
+void loop()
+{
+  bool newdata = false; // check if data is coming in
+    if (feedgps())
+      newdata = true;
+  
+  if (newdata)
+  { 
+    //Pull gps data
+    gps.f_get_position(&flat, &flon, &age);
+    feedgps(); //used to keep gps "awake"
+    gps.crack_datetime(&year, &month, &day, &hour, &minute, &second, &hundredths, &age);
+    feedgps();
+    falt = gps.f_altitude();
+    fspeed = gps.f_speed_mph();
+    fcourse = gps.f_course();
+    feedgps();
+    
+    //Break up float values into whole numbers(var) and decimals(var1) to be added to data
+    int flat1 = (flat - (int)flat) * 10000;
+    int flon1 = (flon - (int)flon) * 100000;
+    int alt1 = 0;
+    if (falt >= 10000000.00){ //when gps cant get altitude
+      falt = 0; //set to 0         
+    }else{
+      falt = falt * 0.032808399; //cm to feet
+      alt1 = (falt - (int)falt) * 10;
+    } 
+    int fspeed1 = (fspeed - (int)fspeed) * 10;
+    int fcourse1 = (fcourse - (int)fcourse) * 10;
+
+    //Create then write the char array "buffer" to the end of the file
+    file.open(root, filename, O_WRITE | O_APPEND);  //Open the file in write mode and append the data to the end of the file.
+    sprintf(buffer, "%d,%d,%d,%d,%d,%d,%0d.%d,%0d.%d,%0d.%d,%0d.%d,%0d.%d\n", year,month,day,hour,minute,second,(int)flat,abs(flat1),(int)flon,abs(flon1),(int)falt,abs(alt1),(int)fspeed,abs(fspeed1),(int)fcourse,abs(fcourse1));
+    file.print(buffer); //Write the 'contents' array to the end of the file.
+    file.close();  //Close the file
+    
+    //flash LED
+    digitalWrite(13, HIGH);   // set the LED on
+    delay(500);
+    digitalWrite(13, LOW);    // set the LED off     
+    delay(10000); // wait 10 sec before writing next data point
+  }
+}
+
+bool feedgps()
+{
+  while (nss.available())
+  {
+    if (gps.encode(nss.read()))
+      return true;
+  }
+  return false;
+}

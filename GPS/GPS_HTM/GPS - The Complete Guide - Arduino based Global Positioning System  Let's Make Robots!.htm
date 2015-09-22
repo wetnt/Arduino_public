@@ -1,0 +1,582 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0035)http://letsmakerobots.com/node/5970 -->
+<HTML lang=en xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>GPS - The Complete Guide - Arduino based Global Positioning System | Let's Make Robots!</TITLE><!--
+This site is powered by
+ ____                         _
+|  _ \ _ __ _   _ _ __   __ _| |
+| | | | '__| | | | '_ \ / _` | |
+| |_| | |  | |_| | |_) | (_| | |
+|____/|_|   \__,_| .__/ \__,_|_|
+                 |_|
+
+Free and Open Source content management system/framework.
+
+Drupal is extremely flexible and very powerful. It has a large and active
+community and powers tens of thousands of sites websites across the globe.
+
+For more information, visit http://drupal.org/
+
+Drupal is a registered trademark of Dries Buytaert.
+-->
+<META content="text/html; charset=utf-8" http-equiv=Content-Type><LINK 
+rel="shortcut icon" type=image/x-icon href="/files/lmr_favicon.ico">
+<STYLE type=text/css media=all>@import url( /files/css/5bd3ea3a65a47018e6b356272f0962a4.css );
+</STYLE>
+
+<STYLE type=text/css media=print>@import url( /files/css/4c23a8bd62b8b996de0b736e81ef7b38.css );
+</STYLE>
+
+<STYLE type=text/css media=screen>@import url( /files/css/06fc3bce2c63d5fafff8fa6782d19eb2.css );
+</STYLE>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/jquery.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/drupal.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/compat.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/lmr_chill.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/lmr_components.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/panels.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/collapse.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/lmr.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/openid.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/jquery.qtip.min.js"></SCRIPT>
+
+<SCRIPT type=text/javascript>Drupal.extend({ settings: { "googleanalytics": { "trackOutgoing": 1, "trackMailto": 1, "trackDownload": 1, "trackDownloadExtensions": "7z|aac|avi|csv|doc|exe|flv|gif|gz|jpe?g|js|mp(3|4|e?g)|mov|pdf|phps|png|ppt|rar|sit|tar|torrent|txt|wma|wmv|xls|xml|zip", "LegacyVersion": 0 } } });</SCRIPT>
+
+<SCRIPT type=text/javascript> </SCRIPT>
+
+<META name=description 
+content="At Let's Make Robots, you can share your homemade robots with the world. Share your cool ideas and stunning designs here or see the clever inventions of others">
+<META name=keywords 
+content="robots, homemade robots, ambient intelligence, ubiquitous computing, internet of things, Everyware, Context-aware computing, Mobile computing, Wearable computing, Embedded computing, Augmented reality, Pervasive computing"><LINK 
+rel="shortcut icon" href="/favicon.ico">
+<META name=GENERATOR content="MSHTML 8.00.6001.19222"></HEAD>
+<BODY id=letsmakerobots.com 
+class="not-front not-logged-in node-type-blog one-sidebar sidebar-right page-node-5970 section-node">
+<DIV id=doc4 class=yui-t4>
+<DIV id=hd>
+<DIV class=cz-toplink><A title="Chillout Zone: " 
+href="http://letsmakerobots.com/chill"><IMG alt="Chillout Zone" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/v3frontchill.png"></A> 
+</DIV>
+<DIV id=site-name><A title="Let's Make Robots!" 
+href="http://letsmakerobots.com/" rel=home><IMG title="Let's Make Robots!" 
+alt="Let's Make Robots!" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/v3topbanner.png" 
+width=335 height=59></A> </DIV>
+<DIV id=navbar-top>
+<UL class=links-menu>
+  <LI><A 
+  title="Are you new to robot building? This may be a good tutorial for you to get started on your first robot." 
+  href="http://letsmakerobots.com/start">Start Here</A></LI>
+  <LI><A title="DOs and DONTs on LetsMakeRobots" 
+  href="http://letsmakerobots.com/lmr/rules">Rules</A></LI>
+  <LI><A title="LMR's Epic Walk Throughs" 
+  href="http://letsmakerobots.com/view/tip/list">Tips</A></LI>
+  <LI><A title="List of all robots" 
+  href="http://letsmakerobots.com/view/node/list/robot">Robots</A></LI>
+  <LI><A 
+  href="http://letsmakerobots.com/view/node/list/something_else">Something 
+  else</A></LI>
+  <LI class=active><A title="Users blogs" 
+  href="http://letsmakerobots.com/blog">Blogs</A></LI>
+  <LI><A 
+  href="http://letsmakerobots.com/view/challenges/list">Challenges</A></LI>
+  <LI><A href="http://letsmakerobots.com/forum">Forums</A></LI>
+  <LI><A href="http://letsmakerobots.com/shops">Shop</A></LI>
+  <LI><A href="http://letsmakerobots.com/tracker">Recent</A></LI>
+  <LI><A title="About LetsMakeRobots" 
+  href="http://letsmakerobots.com/lmr">About</A></LI>
+  <LI><A title="Donation page" 
+  href="http://letsmakerobots.com/donate">Donate</A></LI></UL></DIV>
+<DIV class=breadcrumb><A href="http://letsmakerobots.com/">Home</A> » <A 
+title="Users blogs" href="http://letsmakerobots.com/blog">Blogs</A> » <A 
+href="http://letsmakerobots.com/blog/2941">Gareth's blog</A></DIV></DIV>
+<DIV id=bd>
+<DIV id=yui-main>
+<DIV id=main-content class="yui-b first">
+<DIV id=content-header>
+<H1 id=links-5970 class="title title-link-options">GPS - The Complete Guide - 
+Arduino based Global Positioning System</H1></DIV><!-- /#content-header -->
+<DIV id=content-area>
+<DIV id=node-5970 class="node node-full node-type-blog">
+<DIV class=node-inner>
+<DIV class="taxonomy floating-taxonomy"><A title="" 
+href="http://letsmakerobots.com/taxonomy/term/1750" rel=tag>time</A>, <A 
+title="" href="http://letsmakerobots.com/taxonomy/term/1783" rel=tag>speed</A>, 
+<A title="" href="http://letsmakerobots.com/taxonomy/term/859" 
+rel=tag>position</A>, <A title="" 
+href="http://letsmakerobots.com/taxonomy/term/517" rel=tag>GPS</A>, <A title="" 
+href="http://letsmakerobots.com/taxonomy/term/3049" rel=tag>date</A>, <A 
+title="" href="http://letsmakerobots.com/taxonomy/term/126" rel=tag>Arduino</A>, 
+<A title="" href="http://letsmakerobots.com/taxonomy/term/3048" 
+rel=tag>altitude</A></DIV>
+<DIV class="lmr-nodetype-badge blog"><A 
+href="http://letsmakerobots.com/view/node/list/blog">Blog entry</A></DIV>
+<DIV id=hide-links-5970 class="links hide">
+<UL class="links inline">
+  <LI class="first blog_usernames_blog"><A class=blog_usernames_blog 
+  title="Read Gareth's latest blog entries." 
+  href="http://letsmakerobots.com/blog/2941">Gareth's blog</A></LI>
+  <LI class=comment_forbidden><SPAN class=comment_forbidden><A 
+  href="http://letsmakerobots.com/user/login?destination=node/5970%2523comment-form">Login</A> 
+  or <A 
+  href="http://letsmakerobots.com/user/register?destination=node/5970%2523comment-form">register</A> 
+  to post comments</SPAN></LI>
+  <LI class=bio><A class=bio title="View Gareth's Profile." 
+  href="http://letsmakerobots.com/node/5150">by Gareth</A></LI>
+  <LI class="last collectedby"><A class=collectedby 
+  title="Collected by one user" 
+  href="http://letsmakerobots.com/node/5970/who">Collected by one 
+user</A></LI></UL></DIV>
+<DIV class=submitted>By <A title=Gareth 
+href="http://letsmakerobots.com/user/2941">Gareth</A><BR><BR>March 19, 2009 
+</DIV>
+<DIV class=picture><A title="View user profile." 
+href="http://letsmakerobots.com/user/2941"><IMG title="Gareth's picture" 
+alt="Gareth's picture" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/picture-2941.jpg"></A></DIV>
+<DIV class=content>
+<DIV class=content2>
+<P><STRONG>GPS:- The Complete Guide to Global Positioning Systems.</STRONG></P>
+<P><STRONG>Updated Here :- </STRONG><A 
+href="http://letsmakerobots.com/node/5972">Arduino based Global Positioning 
+System</A></P>
+<P>How they Work and How to interface them into your Robot.</P>
+<P>Does your Robot need to fix its absolute <STRONG>Position - Speed - Heading - 
+Time - Date &amp; Altitude.</STRONG></P>
+<P><BR>Here is a Guide to explain the Process.</P>
+<HR SIZE=2>
+
+<P>GPS satellites (presently totalling 31) orbit the Earth at an approx. 
+altitude of 20,000Km.<BR><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/1GPSConstellationGPS.gif" 
+width=240 height=192><BR>For a GPS unit to fix its location it needs to receive 
+at least 3 satellites<BR><BR>The GPS signal that is transmitted from each 
+satellite contains:-</P>
+<P><BR><STRONG>Time. </STRONG>down to the millisecond range 
+(GMT-referenced).<BR><STRONG>Position. </STRONG>accuracy 2 to 3 
+meters.<BR><STRONG>Altitute.</STRONG><BR><STRONG>Date.</STRONG></P>
+<P>From this information it is also possible to work out <STRONG>Compass 
+Heading</STRONG> and <STRONG>Speed</STRONG>.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<HR SIZE=2>
+
+<P>What follows below is an Arduino based system that i can Highly 
+recommend.</P>
+<P>It is very easy to interface into projects.</P>
+<P>It is a compact robust system and very reliable.</P>
+<HR SIZE=2>
+
+<P>I will be using a <A 
+href="http://www.adafruit.com/index.php?main_page=product_info&amp;cPath=17_21&amp;products_id=98">GPS 
+Shield</A> using the <A 
+href="http://www.adafruit.com/index.php?main_page=product_info&amp;cPath=17_21&amp;products_id=99"><STRONG>USGlobalSat 
+EM-406A</STRONG></A> receiver</P>
+<P>This Shield has also a data logging facility that saves to an SD card .</P>
+<P><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/2GPS-arduino.jpg" 
+width=500 height=375></P>
+<P><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/3GPSbelly.jpg" 
+width=500 height=375></P>
+<P>&nbsp;</P>
+<HR SIZE=2>
+
+<P><STRONG>This walk through is in three parts :-</STRONG></P>
+<HR SIZE=2>
+
+<P><STRONG>Part 1</STRONG> :- using a serial port to retrieve data from a GPS 
+unit</P>
+<HR SIZE=2>
+
+<P>Setting up the basic system - (i included the first part because it is 
+possible to talk directly to the GPS via its serial port just by connecting a 
+FTDI cable direct to the GPS sheild board .)</P>
+<P>&nbsp;</P>
+<P>So for the first part we will be using just the serial port of the 
+<STRONG>Arduino</STRONG> as an example.</P>
+<P>Remove the <STRONG>ATMEGA</STRONG> chip on the Arduino Board (we only need 
+the serial circuit on the Arduino).</P>
+<P>place a jumper cable between <STRONG>digital i/o pin 2 and ground</STRONG> 
+(as Shown Below).</P>
+<P>this switches the GPS Unit on and you can use the Arduinos serial port to 
+read the data.</P>
+<P><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/4GPSArduinoserialhack.jpg" 
+width=313 height=234></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>Then wire the GPS unit so:-</P>
+<P>GPS RX to digital pin 0<BR>GPS TX to digital pin 1<BR>GPS PWR to digital 
+2</P>
+<P><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/5GPSSerial.jpg" 
+width=500 height=197></P>
+<P>The GPS unit can be attached to the Arduino and the USB connected.<BR>Select 
+the <STRONG>Arduinos Serial Port</STRONG> and adjust the speed to <STRONG>4800 
+Baud.</STRONG></P>
+<P><BR>The resulting output stream looks a bit like 
+this:-<BR>------------------------------------------------------------------------------------------------<BR>$GPRMC,150135.000,A,4725.0890,N,00922.8760,E,0.06,198.98,190309,,*00<BR>$GPGGA,150136.000,4725.0890,N,00922.8758,E,1,04,3.0,766.6,M,48.0,M,,0000*58<BR>$GPGSA,A,3,13,25,23,20,,,,,,,,,3.2,3.0,1.0*37<BR>$GPRMC,150136.000,A,4725.0890,N,00922.8758,E,0.05,195.81,190309,,*0E<BR>$GPGGA,150137.000,4725.0891,N,00922.8757,E,1,04,3.0,766.4,M,48.0,M,,0000*55<BR>$GPGSA,A,3,13,25,23,20,,,,,,,,,3.2,3.0,1.0*37<BR>$GPRMC,150137.000,A,4725.0891,N,00922.8757,E,0.07,208.54,190309,,*0C<BR>$GPGGA,150138.000,4725.0892,N,00922.8755,E,1,04,3.0,766.3,M,48.0,M,,0000*5C<BR>$GPGSA,A,3,13,25,23,20,,,,,,,,,3.2,3.0,1.0*37<BR>$GPRMC,150138.000,A,4725.0892,N,00922.8755,E,0.04,197.77,190309,,*05<BR>$GPGGA,150139.000,4725.0892,N,00922.8755,E,1,04,3.0,766.2,M,48.0,M,,0000*5C<BR>$GPGSA,A,3,13,25,23,20,,,,,,,,,3.2,3.0,1.0*37<BR><STRONG>$GPRMC,150139.000,A,4725.0892,N,00922.8755,E,0.05,178.49,190309,,*09</STRONG><BR>-------------------------------------------------------------------------------------------------<BR><BR>Lets 
+break it down the last <STRONG>Bold</STRONG> Line<BR><STRONG>$GP </STRONG>----- 
+<STRONG>G</STRONG>eographic <STRONG>P</STRONG>osition<BR><STRONG>RM</STRONG> 
+------- <STRONG>R</STRONG>eccomended 
+<STRONG>M</STRONG>inimum<BR><STRONG>150139.000</STRONG> -------- Time 
+<STRONG>15:01</STRONG> and remainder in milliseconds<BR><STRONG>A</STRONG> 
+--------- <STRONG>A</STRONG>ctive (else could be <STRONG>V</STRONG> for 
+<STRONG>V</STRONG>oid)<BR><STRONG>4725.0892,N</STRONG> ------ Position Latitude 
+<STRONG>47 </STRONG>Deg <STRONG>25.0892 </STRONG>Minutes<STRONG> 
+N</STRONG>orth<BR><STRONG>00922.8755,E</STRONG> ------Position Longitude<STRONG> 
+009</STRONG> Deg <STRONG>22.8755</STRONG> Minutes 
+<STRONG>E</STRONG>ast<BR><STRONG>190309</STRONG> --------- Date 
+<STRONG>19</STRONG>th <STRONG>march 2009</STRONG><BR><STRONG>*09</STRONG> ------ 
+Checksum<BR><BR><BR><STRONG>$GPGSA</STRONG> string contain information about 
+quality of signal<BR><STRONG>$GPGGA</STRONG> string contains location - quality 
+of signal - and amazingly <STRONG>Altitute</STRONG> information</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<HR SIZE=2>
+
+<P><STRONG>Part 2 :- </STRONG>How can we make use of this information by using 
+an Arduino Script.</P>
+<HR SIZE=2>
+
+<P>Remove the Jumper off the Arduino and Plug the <STRONG>ATMEGA</STRONG> chip 
+back in and install the <A 
+href="http://www.ladyada.net/make/gpsshield/GPStest_RMC.pde"><STRONG>GPStest_RMC.pde</STRONG></A> 
+script.</P>
+<P>&nbsp;</P>
+<P>Dont forget to install a <STRONG><A 
+href="http://www.ladyada.net/media/gpsshield/NewSoftSerial_18-02-09.zip">AFSoftSerial.h</A> 
+</STRONG>library into the Hardware/Libraries</P>
+<P>&nbsp;</P>
+<P><BR><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/6GPSPOSITIONAL.jpg" 
+width=500 height=375></P>
+<P>Then wire the <STRONG>GPS</STRONG> unit so (picture above) :-</P>
+<P>GPS RX to digital pin 3<BR>GPS TX to digital pin 2<BR>GPS PWR to digital 
+4</P>
+<P><BR><BR>Open up the <STRONG>Arduinos Serial Port</STRONG> and set to 
+<STRONG>4800 Baud</STRONG><BR><BR>The resulting output stream looks a bit like 
+this:-<BR>-------------------------------------------------------------------------------------------------<BR>read:<BR>$GPGGA,152635.000,4725.0900,N,00922.9192,E,1,05,3.9,809.1,M,48.0,M,,0000*5E<BR>read:<BR>$GPGSA,A,3,13,23,16,25,07,,,,,,,,5.1,3.9,3.4*3F<BR>read:<BR>$GPGSV,3,1,11,07,69,140,36,25,65,075,43,13,54,059,44,02,42,264,*79<BR>read:<BR>$GPGSV,3,2,11,23,24,073,46,16,10,034,30,20,01,128,,08,38,193,21*78<BR>read:<BR>$GPGSV,3,3,11,04,34,211,28,10,22,304,15,29,01,332,*48<BR>read:<BR>$GPRMC,152635.000,A,4725.0900,N,00922.9192,E,0.21,257.90,190309,,*0A<BR><STRONG>Time: 
+15:26:35<BR>Date: 3/19/9<BR>Lat: +470 25' 5.40"<BR>Long: +90 22' 
+55.15"</STRONG><BR>--------------------------------------------------------------------------------------------------<BR><BR>If 
+you notice the Arduino has extracted the data <STRONG>(in Bold)</STRONG> into 
+variables which can be used in your normal programming.<BR><BR><STRONG>Its as 
+simple as that.</STRONG><BR><BR></P>
+<HR SIZE=2>
+
+<P><STRONG>Part 3:- Third party Software.</STRONG></P>
+<HR SIZE=2>
+
+<P>With the Arduino Set up this way you can attach many third party GPS software 
+packages.<BR>Here is a free-ware version called mini GPS.</P>
+<P>&nbsp;</P>
+<P>If you take a close look the Altitude - Speed - and Track (heading) are also 
+calculated.</P>
+<P><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/7GPSminigpsscreen2.jpg" 
+width=316 height=450></P>
+<P>&nbsp;</P>
+<P>and here is another</P>
+<P><IMG alt="" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/8GPSsirfdemo.jpg" 
+width=499 height=500></P>
+<P>&nbsp;</P>
+<TABLE id=attachments>
+  <THEAD>
+  <TR>
+    <TH>Attachment</TH>
+    <TH>Size</TH></TR></THEAD>
+  <TBODY>
+  <TR class=odd>
+    <TD><A 
+      href="http://letsmakerobots.com/files/GPStest_RMC.pde">GPStest_RMC.pde</A></TD>
+    <TD>4.29 KB</TD></TR></TBODY></TABLE></DIV></DIV></DIV></DIV><!-- /node-inner, /node -->
+<DIV id=comments>
+<FORM id=comment-controls accept-charset=UTF-8 method=post action=/node/5970>
+<DIV>
+<DIV class=box>
+<H2>Comment viewing options</H2>
+<DIV class=content>
+<DIV class=container-inline><INPUT id=edit-comment-controls 
+value=comment_controls type=hidden name=form_id> 
+<DIV id=edit-mode-wrapper class=form-item><SELECT id=edit-mode class=form-select 
+name=mode><OPTION value=1>Flat list - collapsed</OPTION><OPTION value=2>Flat 
+  list - expanded</OPTION><OPTION value=3>Threaded list - 
+  collapsed</OPTION><OPTION selected value=4>Threaded list - 
+expanded</OPTION></SELECT> </DIV>
+<DIV id=edit-order-wrapper class=form-item><SELECT id=edit-order 
+class=form-select name=order><OPTION selected value=1>Date - newest 
+  first</OPTION><OPTION value=2>Date - oldest first</OPTION></SELECT> </DIV>
+<DIV id=edit-comments-per-page-wrapper class=form-item><SELECT 
+id=edit-comments-per-page class=form-select name=comments_per_page><OPTION 
+  selected value=10>10 comments per page</OPTION><OPTION value=30>30 comments 
+  per page</OPTION><OPTION value=50>50 comments per page</OPTION><OPTION 
+  value=70>70 comments per page</OPTION><OPTION value=90>90 comments per 
+  page</OPTION><OPTION value=150>150 comments per page</OPTION><OPTION 
+  value=200>200 comments per page</OPTION><OPTION value=250>250 comments per 
+  page</OPTION><OPTION value=300>300 comments per page</OPTION></SELECT> </DIV><INPUT id=edit-submit class=form-submit value="Save settings" type=submit name=op> 
+</DIV>
+<DIV class=description>Select your preferred way to display the comments and 
+click "Save settings" to activate your changes.</DIV></DIV></DIV></DIV></FORM><A 
+id=comment-19995></A>
+<DIV class="comment odd">
+<DIV class="comment-inner clear-block">
+<DIV class=submitted>By <A title=niall 
+href="http://letsmakerobots.com/user/1510">niall</A><BR>@ Sat, 2009-04-04 09:53 
+</DIV>
+<DIV class=picture><A title="View user profile." 
+href="http://letsmakerobots.com/user/1510"><IMG title="niall's picture" 
+alt="niall's picture" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/picture-1510.jpg"></A></DIV>
+<H3 id=links-comment-19995 class="title title-link-options"><A class=active 
+href="http://letsmakerobots.com/node/5970#comment-19995">if only i had seen 
+this</A></H3>
+<DIV id=hide-links-comment-19995 class="links hide">
+<UL class=links>
+  <LI class="first last comment_forbidden"><SPAN class=comment_forbidden><A 
+  href="http://letsmakerobots.com/user/login?destination=node/5970%2523comment-form">Login</A> 
+  or <A 
+  href="http://letsmakerobots.com/user/register?destination=node/5970%2523comment-form">register</A> 
+  to post comments</SPAN></LI></UL></DIV>
+<DIV class=content>
+<P>if only i had seen this before I made my own parser...</P>
+<P>&nbsp;</P>
+<P><A 
+href="http://suave.rawxing.org/archives/150">http://suave.rawxing.org/archives/150</A></P>
+<P>&nbsp;</P>
+<P>I got the basic GPS module (which i think you're using above) working with a 
+PIC16F876 (and now a 877) and i've managed to get the module to only send the 
+RMC data every second, so much easier to deal with the incoming data 
+stream!</P></DIV></DIV><!-- /comment-inner --></DIV><!-- /comment --><A 
+id=comment-19322></A>
+<DIV class="comment even">
+<DIV class="comment-inner clear-block">
+<DIV class=submitted>By <A title=ArduinoFun 
+href="http://letsmakerobots.com/user/2539">ArduinoFun</A><BR>@ Mon, 2009-03-23 
+20:25 </DIV>
+<DIV class=picture><A title="View user profile." 
+href="http://letsmakerobots.com/user/2539"><IMG title="ArduinoFun's picture" 
+alt="ArduinoFun's picture" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/picture-2539.jpg"></A></DIV>
+<H3 id=links-comment-19322 class="title title-link-options"><A class=active 
+href="http://letsmakerobots.com/node/5970#comment-19322">Sweet</A></H3>
+<DIV id=hide-links-comment-19322 class="links hide">
+<UL class=links>
+  <LI class="first last comment_forbidden"><SPAN class=comment_forbidden><A 
+  href="http://letsmakerobots.com/user/login?destination=node/5970%2523comment-form">Login</A> 
+  or <A 
+  href="http://letsmakerobots.com/user/register?destination=node/5970%2523comment-form">register</A> 
+  to post comments</SPAN></LI></UL></DIV>
+<DIV class=content>Very nice tutorial. I have been wanting to look into doing 
+some stuff with a GPS shield. Thank you for taking the time to&nbsp;document 
+this. </DIV></DIV><!-- /comment-inner --></DIV><!-- /comment --><A 
+id=comment-19098></A>
+<DIV class="comment odd">
+<DIV class="comment-inner clear-block">
+<DIV class=submitted>By <A title=guibot 
+href="http://letsmakerobots.com/user/1045">guibot</A><BR>@ Thu, 2009-03-19 23:41 
+</DIV>
+<DIV class=picture><A title="View user profile." 
+href="http://letsmakerobots.com/user/1045"><IMG title="guibot's picture" 
+alt="guibot's picture" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/picture-1045.jpg"></A></DIV>
+<H3 id=links-comment-19098 class="title title-link-options"><A class=active 
+href="http://letsmakerobots.com/node/5970#comment-19098">Nice information, I 
+want to</A></H3>
+<DIV id=hide-links-comment-19098 class="links hide">
+<UL class=links>
+  <LI class="first last comment_forbidden"><SPAN class=comment_forbidden><A 
+  href="http://letsmakerobots.com/user/login?destination=node/5970%2523comment-form">Login</A> 
+  or <A 
+  href="http://letsmakerobots.com/user/register?destination=node/5970%2523comment-form">register</A> 
+  to post comments</SPAN></LI></UL></DIV>
+<DIV class=content>Nice information, I want to try GPS some day..<BR>I think you 
+should post this as well on the "Tips" section </DIV></DIV><!-- /comment-inner --></DIV><!-- /comment --><A 
+id=comment-19095></A>
+<DIV class="comment even">
+<DIV class="comment-inner clear-block">
+<DIV class=submitted>By <A title=fritsl 
+href="http://letsmakerobots.com/user/4">fritsl</A><BR>@ Thu, 2009-03-19 23:36 
+</DIV>
+<DIV class=picture><A title="View user profile." 
+href="http://letsmakerobots.com/user/4"><IMG title="fritsl's picture" 
+alt="fritsl's picture" 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/picture-4.jpg"></A></DIV>
+<H3 id=links-comment-19095 class="title title-link-options"><A class=active 
+href="http://letsmakerobots.com/node/5970#comment-19095">Nice!Dude, you will 
+have to</A></H3>
+<DIV id=hide-links-comment-19095 class="links hide">
+<UL class=links>
+  <LI class="first last comment_forbidden"><SPAN class=comment_forbidden><A 
+  href="http://letsmakerobots.com/user/login?destination=node/5970%2523comment-form">Login</A> 
+  or <A 
+  href="http://letsmakerobots.com/user/register?destination=node/5970%2523comment-form">register</A> 
+  to post comments</SPAN></LI></UL></DIV>
+<DIV class=content>
+<P>Nice!</P>
+<P>Dude, you will have to copy-paste this as a Tip / walkthrough! :) </P>
+<P>(And thanks for making it, looks very comprehensive, looking forward to check 
+it out!) 
+</P></DIV></DIV><!-- /comment-inner --></DIV><!-- /comment --></DIV></DIV><!-- /#content-area --></DIV><!-- /.yui-b --></DIV><!-- /#yui-main -->
+<DIV id=sidebar-right class=yui-b>
+<DIV id=block-block-7 class="block block-block">
+<H2>Search</H2>
+<DIV class=content>
+<P align=center><A href="http://letsmakerobots.com/node/29856">Search 
+page</A></P></DIV></DIV>
+<DIV id=block-user-0 class="block block-user">
+<H2>User login</H2>
+<DIV class=content>
+<FORM id=user-login-form accept-charset=UTF-8 method=post 
+action=/node/5970?destination=node%2F5970>
+<DIV>
+<DIV id=edit-openid-identifier-wrapper class=form-item><LABEL 
+for=edit-openid-identifier>Log in using OpenID: </LABEL><INPUT 
+id=edit-openid-identifier class=form-text maxLength=255 size=13 type=text 
+name=openid_identifier> 
+<DIV class=description><A href="http://openid.net/">What is 
+OpenID?</A></DIV></DIV>
+<DIV id=edit-name-wrapper>
+<DIV id=edit-name-wrapper class=form-item><LABEL for=edit-name>Username: <SPAN 
+class=form-required title="This field is required.">*</SPAN></LABEL> <INPUT 
+id=edit-name class="form-text required" maxLength=60 size=15 type=text 
+name=name> </DIV></DIV>
+<DIV id=edit-pass-wrapper>
+<DIV id=edit-pass-wrapper class=form-item><LABEL for=edit-pass>Password: <SPAN 
+class=form-required title="This field is required.">*</SPAN></LABEL> <INPUT 
+id=edit-pass class="form-text required" maxLength=60 size=15 type=password 
+name=pass> </DIV></DIV><INPUT id=edit-submit class=form-submit value="Log in" type=submit name=op> 
+
+<DIV class=item-list>
+<UL>
+  <LI><A title="Create a new user account." 
+  href="http://letsmakerobots.com/user/register">Create new account</A></LI>
+  <LI><A title="Request new password via e-mail." 
+  href="http://letsmakerobots.com/user/password">Request new 
+password</A></LI></UL></DIV><INPUT id=edit-user-login-block 
+value=user_login_block type=hidden name=form_id> <A class=openid-link 
+href="http://letsmakerobots.com/%2523">Log in using OpenID</A><A class=user-link 
+href="http://letsmakerobots.com/%2523">Cancel OpenID login</A><INPUT 
+id=edit-openid.return-to 
+value=http://letsmakerobots.com/openid/authenticate?destination=node%2F5970 
+type=hidden name=openid.return_to> </DIV></FORM></DIV></DIV>
+<DIV id=block-blog-0 class="block block-blog">
+<H2>Recent blog posts</H2>
+<DIV class=content>
+<DIV class=item-list>
+<UL>
+  <LI><A href="http://letsmakerobots.com/node/32120">R2D2 Legs</A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32118">Maker's Faire - ShenZhen 
+  China</A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32108">Serve and protect</A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32094">A little robots journey 
+  </A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32093">A little robots journey 
+  </A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32082">R2D2 dome</A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32074">UV Fluorescence marking - 
+  initial concept fail</A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32037">Robot Betty9 is 
+  ALIVE</A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32017">i have to remember</A></LI>
+  <LI><A href="http://letsmakerobots.com/node/32015">Helping David 
+  Chetrit</A></LI></UL></DIV>
+<DIV class=more-link><A title="Read the latest blog entries." 
+href="http://letsmakerobots.com/blog">more</A></DIV></DIV></DIV>
+<DIV id=block-user-3 class="block block-user">
+<H2>Who's online</H2>
+<DIV class=content>There are currently <EM>22 users</EM> and <EM>12 guests</EM> 
+online.
+<DIV class=item-list>
+<H3>Online users</H3>
+<UL>
+  <LI><A title=mogul 
+  href="http://letsmakerobots.com/user/15907">mogul</A><BR></LI>
+  <LI><A title=theandroidman 
+  href="http://letsmakerobots.com/user/858">theandroidman</A><BR></LI>
+  <LI><A title=f8ie 
+href="http://letsmakerobots.com/user/17978">f8ie</A><BR></LI>
+  <LI><A title=Vambo 
+  href="http://letsmakerobots.com/user/11326">Vambo</A><BR></LI>
+  <LI><A title=goncaloc 
+  href="http://letsmakerobots.com/user/10603">goncaloc</A><BR></LI>
+  <LI><A title=Woobatron 
+  href="http://letsmakerobots.com/user/7545">Woobatron</A><BR></LI>
+  <LI><A title="Dan M" href="http://letsmakerobots.com/user/15049">Dan 
+  M</A><BR></LI>
+  <LI><A title=MetalmonkeeLad 
+  href="http://letsmakerobots.com/user/15885">MetalmonkeeLad</A><BR></LI>
+  <LI><A title=TheGrue 
+  href="http://letsmakerobots.com/user/3798">TheGrue</A><BR></LI>
+  <LI><A title=omadawn 
+  href="http://letsmakerobots.com/user/17885">omadawn</A><BR></LI>
+  <LI><A title=DaveyJones 
+  href="http://letsmakerobots.com/user/15865">DaveyJones</A><BR></LI>
+  <LI><A title=mogul 
+  href="http://letsmakerobots.com/user/15907">mogul</A><BR></LI>
+  <LI><A title=AragornSteiger 
+  href="http://letsmakerobots.com/user/18028">AragornSteiger</A><BR></LI>
+  <LI><A title=TheGrue 
+  href="http://letsmakerobots.com/user/3798">TheGrue</A><BR></LI>
+  <LI><A title=Aaronsuper1 
+  href="http://letsmakerobots.com/user/16111">Aaronsuper1</A><BR></LI>
+  <LI><A title=patrickmccabe 
+  href="http://letsmakerobots.com/user/3914">patrickmccabe</A><BR></LI>
+  <LI><A title=ChuckCrunch 
+  href="http://letsmakerobots.com/user/16136">ChuckCrunch</A><BR></LI>
+  <LI><A title=birdmun 
+  href="http://letsmakerobots.com/user/14021">birdmun</A><BR></LI>
+  <LI><A title=fuddyoda 
+  href="http://letsmakerobots.com/user/17932">fuddyoda</A><BR></LI>
+  <LI><A title=HarroRobot 
+  href="http://letsmakerobots.com/user/18011">HarroRobot</A><BR></LI>
+  <LI><A title=ossipee 
+  href="http://letsmakerobots.com/user/16149">ossipee</A><BR></LI>
+  <LI><A title=hydro 
+  href="http://letsmakerobots.com/user/14712">hydro</A><BR></LI></UL></DIV></DIV></DIV>
+<DIV id=block-user-1 class="block block-user">
+<H2>Quick links</H2>
+<DIV class=content>
+<UL class=menu>
+  <LI class=leaf><A href="http://www.facebook.com/group.php?gid=52847854131">LMR 
+  on Facebook</A></LI>
+  <LI class=leaf><A href="http://letsmakerobots.com/node/4389">LMR 
+  Scrapbook</A></LI>
+  <LI class=leaf><A 
+  href="http://letsmakerobots.com/user/5970/pages">Pages</A></LI>
+  <LI class=leaf><A href="http://letsmakerobots.com/rss_feeds">RSS 
+feeds</A></LI></UL></DIV></DIV></DIV></DIV>
+<DIV id=ft>
+<DIV id=footer-message>
+<DIV id=bee3-footer>ALL LMR ARE BELONG TO US!</DIV>Let's make robots! </DIV>
+<DIV id=region_footer></DIV></DIV></DIV>
+<SCRIPT type=text/javascript 
+src="GPS%20-%20The%20Complete%20Guide%20-%20Arduino%20based%20Global%20Positioning%20System%20%20Let's%20Make%20Robots!_files/googleanalytics.js"></SCRIPT>
+
+<SCRIPT type=text/javascript>var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</SCRIPT>
+
+<SCRIPT type=text/javascript>try{var pageTracker = _gat._getTracker("UA-3749072-1");pageTracker._trackPageview();} catch(err) {}</SCRIPT>
+</BODY></HTML>
