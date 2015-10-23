@@ -2,8 +2,6 @@
 int iHCHO = 0;
 float fHCHO = 0.0f;
 //------------------------------------------------
-//查询命令
-unsigned char HCHOAskData[7] = {0x42, 0x4D, 0x01, 0x00, 0x00, 0x00, 0x90};
 //气体名称
 String numName = "";
 String numNameInx[] = {
@@ -28,9 +26,17 @@ void ShowHCHO()
 }
 //------------------------------------------------
 void AskHCHO()
-{ //42 4d 01 00 00 00 90
-  gas.write(HCHOAskData, 7);
-  //Serial.print(data,HEX)
+{
+  //---------------------------------------
+  //42 4d 01 00 00 00 90
+  gas.print(0x42);
+  gas.print(0x4d);
+  gas.print(0x01);
+  gas.print(0x00);
+  gas.print(0x00);
+  gas.print(0x00);
+  gas.print(0x90);
+  //---------------------------------------
 }
 //------------------------------------------------
 char HCHObuf[10];
