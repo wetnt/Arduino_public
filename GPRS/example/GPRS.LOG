@@ -1,0 +1,37 @@
+AT
+OK 
+
+AT+CSQ
++CSQ: 19,0
+OK
+   
+AT+CSQ
++CSQ: 19,0
+OK
+  
+AT+CREG?
++CREG: 0,1
+OK
+   
+AT+CGATT?
++CGATT: 1
+OK
+
+AT+SAPBR=3,1,"CONTYPE","GPRS"
+OK
+  
+AT+SAPBR=3,1,"APN","CMNET"
+OK
+
+AT+HTTPPARA="URL","http://www.bbkgps.com/index.htm"
+OK
+ 
+AT+HTTPACTION=0
+OK
++HTTPACTION:0,200,3122
+  
+AT+HTTPREAD
++HTTPREAD:3122
+<head>
+OK
+ 

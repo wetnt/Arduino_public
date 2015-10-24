@@ -1,0 +1,55 @@
+AT+CSQ
+AT+CGATT?
+AT+SAPBR=3,1,"CONTYPE","GPRS"
+AT+SAPBR=3,1,"APN","CMNET"
+AT+HTTPPARA="URL","http://www.bbkgps.com/index.htm"
+AT+HTTPACTION=0
+AT+HTTPREAD
+
+
+AT+CSQ            
+AT+CREG?            
+AT+CGATT?;            
+AT+SAPBR=3,1,"CONTYPR","GPRS"            
+AT+SAPBR=3,1,"APN","CMNET"           
+AT+SAPBR=1,1            
+AT+HTTPINIT    
+AT+HTTPPARA="URL","www.baidu.com/images/favicon.png"            
+AT+HTTPACTION=0   
+AT+HTTPREAD
+
+
+
+Log.Serial.start!
+gps.Serial.start!
+gsm.Serial.start!  
+
+ATOK
+AT+CSQ
++CSQ: 19,0
+OK
+ 
+AT+CSQ
++CSQ: 19,0
+OK
+
+AT+CREG?
++CREG: 0,1
+OK
+
+AT+CGATT?
++CGATT: 1
+OK
+
+AT+SAPBR=3,1,"CONTYPR","GPRS"
+ERROR
+  
+AT+SAPBR=3,1,"APN","CMNET"
+OK
+
+   
+AT+SAPBR=1,1
+OK
+ 
+AT+HTTPINIT
+OK  
