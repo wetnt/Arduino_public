@@ -27,17 +27,17 @@ int n = 0;
 void loop() {
   //-------------------------------
   DHT_loop();
-  AskHCHO();  smartDelayG(1000);
+  AskHCHO();  smartDelayG(500);
   //-------------------------------
   LCD1602_Clear();  LcdHCHO();
   LCD1602_loop_test();
   //-------------------------------
   n++;
-  if (n > 10) {
+  if (n > 50) {
     n = 0;
     Lewei_Loop();
   }
-  smartDelayW(1000);
+  smartDelayW(500);
   //-------------------------------
 }
 void gasLoop() {
