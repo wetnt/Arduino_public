@@ -15,8 +15,8 @@ void GetLeweiPostString(String Key, String Gate, String ValJson) {
 }
 String Lewei_ValueJson() {
   //Lewei_Post += "[{\"Name\":\"JQ\",\"Value\":\""+String(Val)+"\"}]";
-  dhtH = random(1, 50);
-  return "[{\"Name\":\"JQ\",\"Value\":\"" + String(dhtH) + "\"}]";
+  //dhtH = random(1, 50);
+  return "[{\"Name\":\"WDLD\",\"Value\":\"" + String(dhtHv) + "\"}]";
 }
 //-------------------------------------------------------------------------
 void Lewei_Loop() {
