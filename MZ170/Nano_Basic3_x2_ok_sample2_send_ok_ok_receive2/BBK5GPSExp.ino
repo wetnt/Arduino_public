@@ -36,7 +36,6 @@ void GpsLineExp() {
   //    Serial.print(psub);
   //    Serial.println("------");
   //}
-
   //  char ** stringarr;
   //  int arrayCount = 0;
   //  stringarr = cSplit(GpsLine, ',',  & arrayCount);
