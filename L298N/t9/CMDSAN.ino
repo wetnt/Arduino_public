@@ -11,8 +11,8 @@ int updateTimeKey = 500;
 //---------------------------------------------------
 void CmdSet(){
   //-------------------------------------------------
-  CMD_FB = getCmd[0].toInt();
   CMD_YW = getCmd[1].toInt();
+  CMD_FB = getCmd[0].toInt();
   CMD_PW = getCmd[2].toInt();
   CMD_RL = getCmd[3].toInt();
   //-------------------------------------------------
