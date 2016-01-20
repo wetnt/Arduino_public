@@ -84,6 +84,7 @@ void JoyExpChar(char c) {
   if (c == '$') {
     charReadN = -1; JoyExpClear();
   }
+<<<<<<< HEAD
   charReadN++; JoyExp[charReadN] = c;
   if (c == '*') {
     lg(JoyExp);
@@ -94,5 +95,14 @@ void JoyExpClear() {
   for (int i = 0; i < 100; i++) {
     JoyExp[i] = '\0';
   }
+=======
+  JoyExp[charReadN++] = c;
+  if (c == '*') {
+    lg(JoyExp); LcdClear(); LcdShow(0, 1, JoyExp);
+  }
+}
+void JoyExpClear() {
+  for (int i = 0; i < 100; i++) JoyExp[i] = '\0';
+>>>>>>> 2c99fc52c5a51cc9dc7b48a6e2593249fc5334a9
 }
 
