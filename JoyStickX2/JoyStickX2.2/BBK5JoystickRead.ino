@@ -84,15 +84,12 @@ void JoyExpChar(char c) {
   if (c == '$') {
     charReadN = -1; JoyExpClear();
   }
-  charReadN++; JoyExp[charReadN] = c;
+  JoyExp[charReadN++] = c;
   if (c == '*') {
-    lg(JoyExp);
-    LcdClear(); LcdShow(0, 1, JoyExp);
+    lg(JoyExp); LcdClear(); LcdShow(0, 1, JoyExp);
   }
 }
 void JoyExpClear() {
-  for (int i = 0; i < 100; i++) {
-    JoyExp[i] = '\0';
-  }
+  for (int i = 0; i < 100; i++) JoyExp[i] = '\0';
 }
 

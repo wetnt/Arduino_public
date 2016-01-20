@@ -15,7 +15,7 @@ void MotoRunAB(int va, int vb) {
 void MotoRun(int v, int m1, int m2, int ms) {
   //-------------------------------------------------
   int f = v > 0 ? 1 : -1;
-  int s = Math.abs(v);
+  int s = abs(v);
   //-------------------------------------------------
   if (1 == 0) {
   }  else if (f == 0) {
