@@ -9,7 +9,7 @@ void Car_Init() { //小车初始化
   wl.init(2.5, 1, 20, 28, 30, 32);
   attachInterrupt(wr.I, interrupt_run_r, FALLING);
   attachInterrupt(wl.I, interrupt_run_l, FALLING);
-  smartDelay(500);
+  delay(500);
   lg(F("ok")); lg();
   //---------------------------------------------------------
 }
@@ -27,8 +27,8 @@ void Car_Speed_Start() { //运行速度初始化
 }
 void Car_loop(int r, int l) { //10ms运行一次
   //---------------------------------------------------------
-  r = map(r, 0, 255, -255, 255);
-  l = map(l, 0, 255, -255, 255);
+  //r = map(r, 0, 255, -255, 255);
+  //l = map(l, 0, 255, -255, 255);
   //---------------------------------------------------------
   wr.runx(r);    wl.runx(l);
   smartDelay(loopms);

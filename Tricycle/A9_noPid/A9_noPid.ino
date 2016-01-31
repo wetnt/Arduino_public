@@ -12,6 +12,7 @@ void setup() {
   //-----------------------------
   log_setup();
   rc_setup();
+  delay(500);
   //-----------------------------
   Car_Init();
   //Car_Speed_Start();
@@ -20,13 +21,13 @@ void setup() {
 void loop() {
   //---------------------------------
   rc_cmd_loop();
+  //smartDelay(10);
   //---------------------------------
 }
 static void smartDelay(unsigned long ms)
 {
   unsigned long start = millis(); do {
     //------------------------------------------
-    //APC220_Feed();
     lgFeed();
     rcFeed();
     //------------------------------------------
