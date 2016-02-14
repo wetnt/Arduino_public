@@ -91,8 +91,7 @@ void serialEvent3() {//伪终端，loop()里不能有有delay
     if (counter == 0 && Re_buf[0] != 0x55) return; //第0号数据不是帧头
     //------------------------------------------------------------
     counter++;
-    if (counter == 11)          //接收到11个数据
-    {
+    if (counter == 11){          //接收到11个数据    
       counter = 0;             //重新赋值，准备下一帧数据的接收
       sign = 1;
     }

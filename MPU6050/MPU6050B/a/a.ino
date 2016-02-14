@@ -2,15 +2,15 @@
 #include "Timer.h"//时间操作系统头文件  本程序用作timeChange时间采集并处理一次数据
 //===================================================================
 Timer t;//时间类
-float timeChange = 20; //滤波法采样时间间隔毫秒
+float timeKey = 20; //滤波法采样时间间隔毫秒
 //===================================================================
 void setup() {
   //-------------------------------------
   Serial.begin(115200);//初始化
   MPU6050_setup();
   //-------------------------------------
-  int tickEvent1 = t.every(timeChange, getangle); //本语句执行以后timeChange毫秒执行回调函数getangle
-  int tickEvent2 = t.every(50, MPU6050_show) ; //本语句执行以后50毫秒执行回调函数printout，串口输出
+  int tickEvent1 = t.every(timeKey, getAngle); //本语句执行以后timeChange毫秒执行回调函数getangle
+  int tickEvent2 = t.every(200, MPU6050_show) ; //本语句执行以后50毫秒执行回调函数printout，串口输出
   //-------------------------------------
 }
 void loop() {

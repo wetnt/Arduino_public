@@ -19,7 +19,7 @@
 //===============================================
 
 #include <LiquidCrystal.h>
-LiquidCrystal lcd(7, 8, 9, 5, 4, 3, 2);
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7, 8);
 String t1 = "";
 String t2 = "";
 String t3 = "";
