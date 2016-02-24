@@ -4,7 +4,8 @@ int beepPin = 3;
 void Beep_Init(int pin) {
   lgln(F("Beep_Init..."));
   beepPin = pin; pinMode(beepPin, OUTPUT);
-  Beep(1); Beep_Stop();
+  //Beep(1); 
+  Beep_Stop();
 }
 void Beep_Start() {
   digitalWrite(beepPin, LOW);

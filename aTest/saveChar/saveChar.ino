@@ -20,9 +20,14 @@ typedef struct charCheckSave {
 
 charCheckSave c1;
 
+static char Lewei_Date[] = "Date:";
+static char Lewei_Gmts[] = "GMT";
+
+
+
 void setup() {
   lgsetup("charCheckSave...");
-  c1.init("1234");
+  c1.init(Lewei_Date);
 }
 
 void loop() {

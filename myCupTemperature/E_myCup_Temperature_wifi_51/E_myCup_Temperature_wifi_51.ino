@@ -1,5 +1,5 @@
 //===============================================
-void setup(void){
+void setup(void) {
   //--------------------------------------------
   lgsetup("My Cup Temperature!");
   //------------------------------------------
@@ -16,7 +16,7 @@ void setup(void){
   myCup_Init(46, 43, 40, 38);
   //--------------------------------------------
   Tube4_set(-1, -1, -1, 3, 0);
-  wifi_Init(true, false, false); //lg,testAP,joinAP
+  wifi_Init(true, true, false); //lg,testAP,joinAP
   //--------------------------------------------
   Tube4_set(-1, -1, -1, 5, 0);
   tLoop_Setup();
