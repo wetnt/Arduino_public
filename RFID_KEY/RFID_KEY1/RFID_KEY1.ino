@@ -3,11 +3,11 @@
 #include <SPI.h>
 #include <RFID.h>
 
-RFID rfid(10,5);   //D10--读卡器MOSI引脚、D5--读卡器RST引脚
+RFID rfid(10,9);   //D10--读卡器MOSI引脚、D5--读卡器RST引脚
 //那个读写的例子第6行注释写错了，D10应该连SS片选。D10-->SS, D11-->MOSI, D12 -->MISO, D13 -->SCK，D5 -->RST。
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   SPI.begin();
   //Keyboard.begin();
   rfid.init();

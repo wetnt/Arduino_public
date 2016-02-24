@@ -17,7 +17,7 @@ void setup(void)
   myCup_Init(46, 43, 40, 38);
   //--------------------------------------------
   Tube4_set(-1, -1, -1, 3, 0);
-  wifi_Init(false, true, false); //lg,AP,test
+  wifi_Init(true, true, false); //lg,AP,test
   //--------------------------------------------
   lewei_time_init();
   //--------------------------------------------
@@ -40,8 +40,8 @@ void loop(void) {
 //===============================================
 void work() {
   //------------------------------------------
-  if (ts_loop(5)) TubeTurn();
   if (ts_loop(2)) {
+    TubeTurn();
     DS18B20_loop(); //DS18B20_print();
     myCupCheck();
   }
@@ -61,7 +61,6 @@ void TubeTurn() {
 void TubeTemperatureShow() {
   //------------------------------------------
   //char s[10];snprintf(s, sizeof(s), "%d",k );
-  //lg("k="); lg(k); lg(","); lg(a);  lg(","); lg(b); lg();
   //------------------------------------------
   int k = GetMyCupTemperature();
   int a = k / 1000; if (a <= 0)a = -1;
@@ -69,6 +68,7 @@ void TubeTemperatureShow() {
   int c = k / 10; if (c <= 0)c = -1;
   int d = k % 10;
   Tube4_set(a, b, c, d, 0);
+  lg("k="); lg(k); lg(","); lg(a);  lg(","); lg(b); lg(","); lg(c);  lg(","); lg(d); lg();
   //------------------------------------------
 }
 //===============================================
