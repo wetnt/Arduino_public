@@ -3,48 +3,47 @@
 int ledPin = 13;
 int dotDelay = 200;
 
-PROGMEM prog_char sA[]  = ".-";
-PROGMEM prog_char sB[]  = "-...";
-PROGMEM prog_char sC[]  = "-.-.";
-PROGMEM prog_char sD[]  = "-..";
-PROGMEM prog_char sE[]  = ".";
-PROGMEM prog_char sF[]  = "..-.";
-PROGMEM prog_char sG[]  = "--.";
-PROGMEM prog_char sH[]  = "....";
-PROGMEM prog_char sI[]  = "..";
-PROGMEM prog_char sJ[]  = ".---";
-PROGMEM prog_char sK[]  = "-.-";
-PROGMEM prog_char sL[]  = ".-..";
-PROGMEM prog_char sM[]  = "--";
-PROGMEM prog_char sN[]  = "-.";
-PROGMEM prog_char sO[]  = "---";
-PROGMEM prog_char sP[]  = ".--.";
-PROGMEM prog_char sQ[]  = "--.-";
-PROGMEM prog_char sR[]  = ".-.";
-PROGMEM prog_char sS[]  = "...";
-PROGMEM prog_char sT[]  = "-";
-PROGMEM prog_char sU[]  = "..-";
-PROGMEM prog_char sV[]  = "...-";
-PROGMEM prog_char sW[]  = ".--";
-PROGMEM prog_char sX[]  = "-..-";
-PROGMEM prog_char sY[]  = "-.--";
-PROGMEM prog_char sZ[]  = "--..";
+PROGMEM const char sA[]  = ".-";
+PROGMEM const char sB[]  = "-...";
+PROGMEM const char sC[]  = "-.-.";
+PROGMEM const char sD[]  = "-..";
+PROGMEM const char sE[]  = ".";
+PROGMEM const char sF[]  = "..-.";
+PROGMEM const char sG[]  = "--.";
+PROGMEM const char sH[]  = "....";
+PROGMEM const char sI[]  = "..";
+PROGMEM const char sJ[]  = ".---";
+PROGMEM const char sK[]  = "-.-";
+PROGMEM const char sL[]  = ".-..";
+PROGMEM const char sM[]  = "--";
+PROGMEM const char sN[]  = "-.";
+PROGMEM const char sO[]  = "---";
+PROGMEM const char sP[]  = ".--.";
+PROGMEM const char sQ[]  = "--.-";
+PROGMEM const char sR[]  = ".-.";
+PROGMEM const char sS[]  = "...";
+PROGMEM const char sT[]  = "-";
+PROGMEM const char sU[]  = "..-";
+PROGMEM const char sV[]  = "...-";
+PROGMEM const char sW[]  = ".--";
+PROGMEM const char sX[]  = "-..-";
+PROGMEM const char sY[]  = "-.--";
+PROGMEM const char sZ[]  = "--..";
 
 PROGMEM const char* letters[] = {sA, sB, sC, sD, sE, sF, sG, sH, sI, sJ, sK, sL, sM,
                                  sN, sO, sP, sQ, sR, sS, sT, sU, sV, sW, sX, sY, sZ
                                 };
 
-PROGMEM prog_char s0[]  = "-----";
-PROGMEM prog_char s1[]  = ".----";
-PROGMEM prog_char s2[]  = "..---";
-PROGMEM prog_char s3[]  = "...--";
-PROGMEM prog_char s4[]  = "....-";
-PROGMEM prog_char s5[]  = ".....";
-PROGMEM prog_char s6[]  = "-....";
-PROGMEM prog_char s7[]  = "--...";
-PROGMEM prog_char s8[]  = "---..";
-PROGMEM prog_char s9[]  = "----.";
-
+PROGMEM const char s0[]  = "-----";
+PROGMEM const char s1[]  = ".----";
+PROGMEM const char s2[]  = "..---";
+PROGMEM const char s3[]  = "...--";
+PROGMEM const char s4[]  = "....-";
+PROGMEM const char s5[]  = ".....";
+PROGMEM const char s6[]  = "-....";
+PROGMEM const char s7[]  = "--...";
+PROGMEM const char s8[]  = "---..";
+PROGMEM const char s9[]  = "----.";
 
 PROGMEM const char* numbers[] = {s0, s1, s2, s3, s4, s5, s6, s7, s8, s9};
 
