@@ -2,10 +2,8 @@
 int la = 0, lb = 0, lc = 0, ld = 0;
 void lewei_time_exp() {
   //------------------------------------------
-  lgln("-------t--------");
-  lgln(wifiBack);
-  String t = GetStringAB(wifiBack, "2016 ", "G");
-  lgln(t);
+  String t = GetStringAB(wifiBack, "2016 ", "GMT"); 
+  lg("t=");lgln(t);
   //------------------------------------------
   la = t[0] - 48; if (la < 0) la = 0;
   lb = t[1] - 48; if (lb < 0) lb = 0;

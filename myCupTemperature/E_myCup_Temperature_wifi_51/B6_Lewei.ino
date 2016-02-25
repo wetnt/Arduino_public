@@ -25,23 +25,26 @@ void Lewei_Loop() {
   int dn = Lewei_Data.length();
   int tn = L(Lewei_Head) + L(Lewei_Usek) + L(Lewei_Host)
            + L(Lewei_LenA) + String(dn).length() + L(Lewei_LenB)
-           + L(Lewei_Line) + Lewei_Data.length() + L(Lewei_Line) + L(Lewei_Line);
-  //+ L(Lewei_Line) + L(Lewei_Clos) + L(Lewei_Line);
-  senx = S(AT_Send) + String( tn + String(tn).length() ); 
+           + L(Lewei_Line) + Lewei_Data.length() + L(Lewei_Line)
+           + L(Lewei_Line) + L(Lewei_Clos) + L(Lewei_Line) + L(Lewei_Line);
+  senx = S(AT_Send) + String( tn + String(tn).length() );
   //-------------------------------------------------------------------------------
   wifiRun = wfs_cmd_back(S(Lewei_Link), S(AT_Cnet), S(AT_Errs), 2000 );
   wifiRun = wfs_cmd_back(senx,          S(AT_Stat), S(AT_Errs), 2000 );
-  lgln(senx);
-  lgln(wifiBack);
-  //-------------------------------------------------------------------------------
-  for (;;);
+  //lgln(senx); lgln(wifiBack);//for (;;);  
   //-------------------------------------------------------------------------------
   wfs_cmd_send(S(Lewei_Head)); wfs_cmd_send(S(Lewei_Usek)); wfs_cmd_send(S(Lewei_Host));
   wfs_cmd_send(S(Lewei_LenA)); wfs_cmd_send(String(dn));    wfs_cmd_send(S(Lewei_LenB));
   wfs_cmd_send(S(Lewei_Line)); wfs_cmd_send(Lewei_Data);    wfs_cmd_send(S(Lewei_Line)); wfs_cmd_send(S(Lewei_Line));
-  //wfs_cmd_send(S(Lewei_Line)); wfs_cmd_send(S(Lewei_Clos)); wfs_cmd_send(S(Lewei_Line));
+  wfs_cmd_send(S(Lewei_Clos)); wfs_cmd_send(S(Lewei_Line)); wfs_cmd_send(S(Lewei_Line)); //wfs_cmd_send(S(Lewei_Line));
+  //-------------------------------------------------------------------------------
+  //wifiRun = wfs_cmd_back(G(Lewei_Line), AT_Clsd, AT_Empt, 20000);
+  wifiRun = wfs_cmd_backAB(S(Lewei_Line), "Date: ", "GMT", 5000);wfs_serial_clear();
+  //lgln(wifiBack);
+  //-------------------------------------------------------------------------------
   //wifiRun = wfs_cmd_back(S(Lewei_Line), S(AT_Clsd), S(AT_Empt), 20000);
-  wifiRun = wfs_cmd_backAB(S(Lewei_Line), "Date:", "GMT", 5000);
+  //wifiRun = wfs_cmd_backAB(S(Lewei_Line), "Date:", "GMT", 5000);
+  //lgln(Lewei_Data);lgln(wifiBack);
   //-------------------------------------------------------------------------------
 }
 //=============================================================================================

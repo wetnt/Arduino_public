@@ -39,7 +39,7 @@ void wifi_Init(boolean lgKey, boolean startAP, boolean joinAP) {
   logKey = lgKey;
   //-------------------------------------------------------------------------
   if (startAP) netStartAP();
-  if (joinAP) netJoinAP(F("acDev"), F("AbroadCar2015()"));//netJoinAP(F("MMMM"), F("1234567890123"));
+  if (joinAP) netJoinAP(F("MMMM"), F("1234567890123"));//netJoinAP(F("acDev"), F("AbroadCar2015()"));
   lgln(wifiAP); lgln(wifiIP);
   //-------------------------------------------------------------------------
 }
@@ -76,11 +76,15 @@ void HttpGetPost(String link, String text, int seconds) {
   wifiRun = wfs_cmd_back(text, S(AT_Clsd), S(AT_Empt), 20000); //lg(wifiBack); lg('='); lg(wifiRun); lg(); //if (!wifiRun) return;
 }
 //=========================================================================
+const static char Link_Baidu[] PROGMEM = {"AT+CIPSTART=\"TCP\",\"www.baidu.com\",80"};
+const static char Urls_Baidu[] PROGMEM = {"GET / HTTP/1.0\r\n\r\n"};
 void NetLinkTest_Baidu() {
-  HttpGetPost(F("AT+CIPSTART=\"TCP\",\"www.baidu.com\",80"), F("GET / HTTP/1.0\r\n\r\n") , 5); lgln(wifiBack);
+  HttpGetPost(S(Link_Baidu), S(Urls_Baidu) , 5); lgln(wifiBack);
 }
+const static char Link_BkGps[] PROGMEM = {"AT+CIPSTART=\"TCP\",\"www.bbkgps.com\",80"};
+const static char Urls_BkGps[] PROGMEM = {"GET http://www.bbkgps.com/t.php HTTP/1.0\r\n\r\n"};
 void NetLinkTest_BBKGPS() {
-  HttpGetPost(F("AT+CIPSTART=\"TCP\",\"www.bbkgps.com\",80"), F("GET http://www.bbkgps.com/t.php HTTP/1.0\r\n\r\n") , 10); lgln(wifiBack);
+  HttpGetPost(S(Link_BkGps), S(Urls_BkGps) , 10); lgln(wifiBack);
 }
 //=========================================================================
 //=========================================================================
@@ -103,7 +107,7 @@ typedef struct charCheckSave {
   }
 } charCheckSave;
 //=========================================================================
-charCheckSave ck1, ck2, ck3, ck4;
+charCheckSave ck1, ck2, ck3, ck4, ck5;
 //=========================================================================
 void wfs_serial_clear() {
   while (wfs.available() > 0) {
@@ -123,6 +127,7 @@ boolean wfs_cmd_backAB(String comStr, String strOK, String strNO, long timeout) 
   ck2.init(strNO);
   ck3.init(S(AT_Errs));
   ck4.init(S(AT_Busy));
+  ck5.init(S(AT_Clsd));  
   //------------------------------------------------------
   wfs_serial_clear(); wfs.println(comStr);
   //-------------------------------------------------------
@@ -134,15 +139,13 @@ boolean wfs_cmd_backAB(String comStr, String strOK, String strNO, long timeout) 
       if (c == '\0') continue;
       if (logKey) lg(c);
       //-----------------------------------
-      if (ck1.check(c)) {
-        save = true;
-        lg("============"); lg(c); lg();
-      }
       if (save) wifiBack += c;
+      if (ck1.check(c)) save = true;
       if (ck2.check(c)) save = false;
       //-----------------------------------
-      if (ck3.check(c)) return true;
-      if (ck4.check(c)) return false;
+      //if (ck3.check(c)) return true;
+      //if (ck4.check(c)) return false;
+      if (ck5.check(c)) return false;
       //-----------------------------------
     }
     //-------------------------------------------------------
