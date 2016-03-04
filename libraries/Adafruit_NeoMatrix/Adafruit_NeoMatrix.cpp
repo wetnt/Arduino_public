@@ -42,15 +42,19 @@
  #endif
 #endif
 
+#ifndef _swap_uint16_t
+#define _swap_uint16_t(a, b) { uint16_t t = a; a = b; b = t; }
+#endif
+
 // Constructor for single matrix:
 Adafruit_NeoMatrix::Adafruit_NeoMatrix(int w, int h, uint8_t pin,
-  uint8_t matrixType, uint8_t ledType) : Adafruit_GFX(w, h),
+  uint8_t matrixType, neoPixelType ledType) : Adafruit_GFX(w, h),
   Adafruit_NeoPixel(w * h, pin, ledType), type(matrixType), matrixWidth(w),
   matrixHeight(h), tilesX(0), tilesY(0), remapFn(NULL) { }
 
 // Constructor for tiled matrices:
 Adafruit_NeoMatrix::Adafruit_NeoMatrix(uint8_t mW, uint8_t mH, uint8_t tX,
-  uint8_t tY, uint8_t pin, uint8_t matrixType, uint8_t ledType) :
+  uint8_t tY, uint8_t pin, uint8_t matrixType, neoPixelType ledType) :
   Adafruit_GFX(mW * tX, mH * tY), Adafruit_NeoPixel(mW * mH * tX * tY, pin,
   ledType), type(matrixType), matrixWidth(mW), matrixHeight(mH), tilesX(tX),
   tilesY(tY), remapFn(NULL) { }
@@ -138,7 +142,7 @@ void Adafruit_NeoMatrix::drawPixel(int16_t x, int16_t y, uint16_t color) {
       if((type & NEO_TILE_AXIS) == NEO_TILE_ROWS) {
         majorScale = tilesX;
       } else {
-        swap(major, minor);
+        _swap_uint16_t(major, minor);
         majorScale = tilesY;
       }
 
@@ -175,7 +179,7 @@ void Adafruit_NeoMatrix::drawPixel(int16_t x, int16_t y, uint16_t color) {
     if((type & NEO_MATRIX_AXIS) == NEO_MATRIX_ROWS) {
       majorScale = matrixWidth;
     } else {
-      swap(major, minor);
+      _swap_uint16_t(major, minor);
       majorScale = matrixHeight;
     }
 

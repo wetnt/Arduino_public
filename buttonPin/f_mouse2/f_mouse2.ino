@@ -1,5 +1,5 @@
-const static int PinCC = A0;
-const static int PinCV = A1;
+const static int PinCC = A1;
+const static int PinCV = A0;
 const static int PinDL = A2;
 const static int PinEN = A3;
 const static int Buttons[] = {PinCC, PinCV, PinDL, PinEN};
@@ -8,7 +8,6 @@ void setup() {
   //--------------------------------------
   lgsetup("ButtonPin Start......");
   Button_Setup();
-  Keyboard.begin();
   //--------------------------------------
 }
 void loop() {
@@ -44,23 +43,5 @@ void WorkRun(int ButtonPin) {
 }
 void WorkRun_press_delay() {
   delay(100); Keyboard.releaseAll();
-}
-void WorkRun_Ctrl_C() {
-  lg("WorkRun_Ctrl_C"); lg();
-  Keyboard.press(KEY_LEFT_CTRL);
-  Keyboard.press(67);//C
-}
-void WorkRun_Ctrl_V() {
-  lg("WorkRun_Ctrl_V"); lg();
-  Keyboard.press(KEY_LEFT_CTRL);
-  Keyboard.press(86);//V
-}
-void WorkRun_Delete() {
-  lg("WorkRun_Delete"); lg();
-  Keyboard.press(46);
-}
-void WorkRun_Enters() {
-  lg("WorkRun_Enters"); lg();
-  Keyboard.press(13);delay(100); 
 }
 //==========================================
