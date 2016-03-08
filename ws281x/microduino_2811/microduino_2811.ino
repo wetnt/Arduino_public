@@ -1,13 +1,14 @@
 static const String codeName = "ws2811!";
 
-#include <Adafruit_NeoPixel.h>
- 
+#include <Adafruit_NeoPixel.h> 
 #define PIN 7   //led灯控制引脚
-#define PIN_NUM 1 //允许接的led灯的个数
- 
+#define PIN_NUM 1 //允许接的led灯的个数 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIN_NUM, PIN, NEO_GRB + NEO_KHZ800);
 
+int Pinx[8] = {A0, A1, A2, A3, A4, A5, A6, A7};
+
 void setup() {
+  for (int i = 0; i < 8; i++)pinMode(Pinx[i], INPUT);
   lgsetup(codeName);
   strip.begin();
 }
