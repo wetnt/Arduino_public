@@ -49,8 +49,7 @@ void MPU6050_show() {
   //-------------------------------------
 }
 //===================================================================
-void getangle()
-{
+void getangle() {
   accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);//读取原始6个数据
   angleAx = atan2(ax, az) * 180 / PI; //计算与x轴夹角
   gyroGy = -gy / 131.00; //计算角速度
@@ -59,21 +58,18 @@ void getangle()
   Kalman_Filter(angleAx, gyroGy);  //卡尔曼滤波
 }
 //===================================================================
-void Yijielvbo(float angle_m, float gyro_m)//一阶滤波
-{
+void Yijielvbo(float angle_m, float gyro_m) { //一阶滤波
   angle1 = K1 * angle_m + (1 - K1) * (angle1 + gyro_m * dt);
 }
 
-void Erjielvbo(float angle_m, float gyro_m)//二阶滤波
-{
+void Erjielvbo(float angle_m, float gyro_m) { //二阶滤波
   x1 = (angle_m - angle2) * (1 - K2) * (1 - K2);
   y1 = y1 + x1 * dt;
   x2 = y1 + 2 * (1 - K2) * (angle_m - angle2) + gyro_m;
   angle2 = angle2 + x2 * dt;
 }
 
-void Kalman_Filter(double angle_m, double gyro_m)//卡尔曼滤波
-{
+void Kalman_Filter(double angle_m, double gyro_m) { //卡尔曼滤波
   angle += (gyro_m - q_bias) * dt;
   angle_err = angle_m - angle;
   Pdot[0] = Q_angle - P[0][1] - P[1][0];

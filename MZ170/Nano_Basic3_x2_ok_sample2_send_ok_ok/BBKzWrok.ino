@@ -38,7 +38,8 @@ void GPS_work() {
 void APC220_send() {
   //------------------------------------------------------------------------------------------------
   String x =
-    String(gs.d) + String(F(",")) + String(gs.t) + String(F(",")) +
+    //String(gs.d) + String(F(",")) +
+    String(gs.t) + String(F(",")) +
     String(gs.w) + String(F(",")) + String(gs.j) + String(F(",")) + String(gs.h) + String(F(",")) +
     String(gs.v) + String(F(",")) + String(gs.x) + String(F(",")) + String(gs.n) + String(F(",")) +
     String(angleMax) + String(F(",")) + String(homeL) + String(F(";"));
