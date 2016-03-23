@@ -44,7 +44,7 @@ void WorkRun(int ButtonPin) {
     case Pin6: kp("wetnt@sina.com"); kdtr(); break;
     case Pin5: kp("wetntxjp318"); kdr(); break;
     case Pin3: kp("shaochidian318"); kdr(); break;
-    case Pin2: kp("XJPshaochidian318"); kdr(); break;
+    case Pin2: kp("142401197703110912"); kdr(); break;
   }
   //------------------------------------------
 }
