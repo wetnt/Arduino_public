@@ -1,0 +1,5 @@
+Error occured on 2016/3/25 星期五 下午 5:02:36-------------------------------------------
+Message:操作超时
+StackTrace:   在 System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   在 WLW.SerialTool.BL.Poster.Compleate(IAsyncResult asyncResult)
+

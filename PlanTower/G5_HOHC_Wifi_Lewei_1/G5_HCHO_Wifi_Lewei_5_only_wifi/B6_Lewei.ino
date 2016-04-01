@@ -6,52 +6,45 @@ const static char Lewei_Host[] PROGMEM = {"Host: www.lewei50.com\r\n"};
 const static char Lewei_LenA[] PROGMEM = {"Content-Length: "};
 const static char Lewei_LenB[] PROGMEM = {"\r\n"};
 const static char Lewei_Type[] PROGMEM = {"Content-Type: application/x-www-form-urlencoded\r\n"};
-const static char Lewei_Clos[] PROGMEM = {"Connection: close\r\n"};
-//-------------------------------------------------------------------
-const static char Lewei_JsnA[] PROGMEM = {"{\"Name\":\""};
-const static char Lewei_JsnB[] PROGMEM = {"\",\"Value\":\""};
-const static char Lewei_JsnC[] PROGMEM = {"\"}"};
-//-------------------------------------------------------------------
+const static char Lewei_Clos[] PROGMEM = {"Connection: close\r\n\r\n"};
+const static char Lewei_JsnA[] PROGMEM = {"[{\"Name\":\"WDLD\",\"Value\":\""};
+const static char Lewei_JsnB[] PROGMEM = {"\"}]"};
 const static char Lewei_Line[] PROGMEM = {"\r\n"};
 //static char Lewei_Date[] = "Date:";
 //static char Lewei_Gmts[] = "GMT";
 //-------------------------------------------------------------------------
 static String Lewei_Data = "";
 //-------------------------------------------------------------------------
-String Lewei_Build() {
-  String s = "";
-  s += Lewei_Json("WD", String(Si_Temperature)) + ',';
-  s += Lewei_Json("SD", String(Si_Humidity)) + ',';
-  s += Lewei_Json("JQ", String(fHCHO)) + ',';
-  s += Lewei_Json("PM", String(g.cf25));
-  s = "[" + s + "]"; //lgln(s);
-  return s;
-}
-String Lewei_Json(String nameStr, String valueStr) {
-  return S(Lewei_JsnA) + nameStr + S(Lewei_JsnB) + valueStr + S(Lewei_JsnC);
-}
 void Lewei_Loop() {
   //-------------------------------------------------------------------------------
-  Lewei_Data = Lewei_Build();
+  //NetLinkTest_BBKGPS(); return;
+  //-------------------------------------------------------------------------------
+  float t = 5;//GetMyCupTemperature();
+  //-------------------------------------------------------------------------------
+  Lewei_Data = S(Lewei_JsnA) + String(t) + S(Lewei_JsnB);
   int dn = Lewei_Data.length();
   int tn = L(Lewei_Head) + L(Lewei_Usek) + L(Lewei_Host)
            + L(Lewei_LenA) + String(dn).length() + L(Lewei_LenB)
-           + L(Lewei_Clos) + L(Lewei_Line)
-           + Lewei_Data.length() + L(Lewei_Line) + L(Lewei_Line);
+           + L(Lewei_Line) + Lewei_Data.length() + L(Lewei_Line)
+           + L(Lewei_Line) + L(Lewei_Clos) + L(Lewei_Line) + L(Lewei_Line);
   senx = S(AT_Send) + String( tn + String(tn).length() );
-  String sendStr = "";
-  sendStr += S(Lewei_Head) + S(Lewei_Usek) + S(Lewei_Host);
-  sendStr += S(Lewei_LenA) + String(dn) + S(Lewei_LenB);
-  sendStr += S(Lewei_Clos) + S(Lewei_Line);
-  sendStr += Lewei_Data + S(Lewei_Line) + S(Lewei_Line);
   //-------------------------------------------------------------------------------
   wifiRun = wfs_cmd_back(S(Lewei_Link), S(AT_Cnet), S(AT_Errs), 2000 );
-  wifiRun = wfs_cmd_back(senx,          S(AT_Stat), S(AT_Errs), 2000 );  
-  //lgln(sendStr);
-  wifiRun = wfs_cmd_backAB(sendStr, "Date: ", "GMT", 5000); wfs_serial_clear();
-  //wifiRun = wfs_cmd_backAB(sendStr, "Successful", "}", 5000); wfs_serial_clear();
+  wifiRun = wfs_cmd_back(senx,          S(AT_Stat), S(AT_Errs), 2000 );
+  //lgln(senx); lgln(wifiBack);//for (;;);  
   //-------------------------------------------------------------------------------
-  lgln(wifiBack);
+  wfs_cmd_send(S(Lewei_Head)); wfs_cmd_send(S(Lewei_Usek)); wfs_cmd_send(S(Lewei_Host));
+  wfs_cmd_send(S(Lewei_LenA)); wfs_cmd_send(String(dn));    wfs_cmd_send(S(Lewei_LenB));
+  wfs_cmd_send(S(Lewei_Line)); wfs_cmd_send(Lewei_Data);    wfs_cmd_send(S(Lewei_Line)); wfs_cmd_send(S(Lewei_Line));
+  wfs_cmd_send(S(Lewei_Clos)); wfs_cmd_send(S(Lewei_Line)); wfs_cmd_send(S(Lewei_Line)); //wfs_cmd_send(S(Lewei_Line));
+  //-------------------------------------------------------------------------------
+  //wifiRun = wfs_cmd_back(G(Lewei_Line), AT_Clsd, AT_Empt, 20000);
+  wifiRun = wfs_cmd_backAB(S(Lewei_Line), "Date: ", "GMT", 5000);wfs_serial_clear();
+  //lgln(wifiBack);
+  //-------------------------------------------------------------------------------
+  //wifiRun = wfs_cmd_back(S(Lewei_Line), S(AT_Clsd), S(AT_Empt), 20000);
+  //wifiRun = wfs_cmd_backAB(S(Lewei_Line), "Date:", "GMT", 5000);
+  //lgln(Lewei_Data);lgln(wifiBack);
   //-------------------------------------------------------------------------------
 }
 //=============================================================================================

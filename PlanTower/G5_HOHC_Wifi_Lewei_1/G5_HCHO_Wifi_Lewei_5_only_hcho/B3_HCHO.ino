@@ -16,21 +16,14 @@ const static char numNameInx[][5] = {//50% //String numNameInx[]= {//56%
 };
 //数据内容 单位
 String numUnit;
-const static char numUnitInx[][6] = {"", "ppm", "VOL", "LEL", "Ppb", "mg/m3"};
+const static char numUnitInx[][5] = {"", "ppm", "VOL", "LEL", "Ppb", "MgM3"};
 //数据当量
 float numKeys = 1;
 const float numKeysInx[] = {1, 1, 10, 100, 1000};
 //------------------------------------------------
-unsigned long HCHO_Time = millis();
-void HCHO_loop() {//42 4d 01 00 00 00 90
-  if (millis() - HCHO_Time < 5 * 1000) return;
-  HCHO_Time = millis();
-  S3.write(HCHOAskData, 7);//Serial.print(data,HEX)//AskHCHO()
-}
-//------------------------------------------------
-void ShowHCHO() {
+void ShowHCHO(){
   //---------------------------------------
-  lg(numName); lg(F(":")); lg(fHCHO); lg(F(" ")); lg(numUnit);
+  lg(numName); lg(F(":")); lg(fHCHO); lg(F(" ")); lg(numUnit); 
   lg(F(" Avg:")); lg(fHCHOavr); lgln(numUnit);
   //---------------------------------------
 }
@@ -39,16 +32,21 @@ void LcdHCHO() {
   //LCD1602_Show(6, 1, String(dhtH) + String(F("C V:")) + String(fHCHOavr) + String(F(" ")) + String(numUnit) );
 }
 //------------------------------------------------
+void AskHCHO(){ //42 4d 01 00 00 00 90
+  S3.write(HCHOAskData, 7);
+  //Serial.print(data,HEX)
+}
+//------------------------------------------------
 char HCHObuf[10];
 int HCHOinx = 0;
-void HCHOCheck(byte c) {
+void HCHOCheck(byte c){
   if (HCHOinx == 9) GetHCHO();
   if (HCHOinx == 9) ShowHCHO();
   if (c == 0x42) HCHOinx = 0;
   HCHObuf[HCHOinx] = c;
   HCHOinx++;
 }
-void GetHCHO() {
+void GetHCHO(){
   //---------------------------------------
   numName = numNameInx[HCHObuf[3]];
   numUnit = numUnitInx[HCHObuf[4]];

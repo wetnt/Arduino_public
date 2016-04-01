@@ -63,7 +63,7 @@ void netJoinAP(String n, String p) {
   wifiRun = wfs_cmd_back(S(AT_Type), S(AT_OKss), S(AT_Empt), 1000 ); //beWiFi
   wifiRun = wfs_cmd_back(S(AT_Rest), S(AT_RstB), S(AT_Empt), 5000 ); //reBoot
   wifiRun = wfs_cmd_back(S(AT_Cmux), S(AT_OKss), S(AT_Empt), 1000 ); //lgln(s);//?
-  wifiRun = wfs_cmd_back(  AT_Join , S(AT_OKss), S(AT_Empt), 10000); //lgln(s);//joinAP
+  wifiRun = wfs_cmd_back(  AT_Join , S(AT_OKss), S(AT_Empt), 20000); //lgln(s);//joinAP
   wifiRun = wfs_cmd_back(S(AT_IsJP), S(AT_OKss), S(AT_Fail), 1000 ); wifiAP = GetStringAB(wifiBack, F("\""), F("\"\r\n")); //SeeAP
   wifiRun = wfs_cmd_back(S(AT_lgIP), S(AT_OKss), S(AT_Empt), 1000 ); wifiIP = GetStringAB(wifiBack, F("\""), F("\"\r\n")); //seesIP
   //lgln(wifiAP); lgln(wifiIP); //for (;;);
