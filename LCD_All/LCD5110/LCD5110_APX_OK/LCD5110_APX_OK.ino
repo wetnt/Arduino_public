@@ -26,7 +26,17 @@ All text above, and the splash screen must be included in any redistribution
 // pin 5 - Data/Command select (D/C)
 // pin 4 - LCD chip select (CS)
 // pin 3 - LCD reset (RST)
-Adafruit_PCD8544 display = Adafruit_PCD8544(7, 6, 5, 4, 3);
+//Adafruit_PCD8544 display = Adafruit_PCD8544(7, 6, 5, 4, 3);
+
+//52,50,48,46,44
+//SC,RST,DC,DN,CLK
+
+//SDA/SDI/MOSI
+//SCL/CLK/SCLK 
+//CS/CE 
+//RST/RESET
+//RS/DC
+Adafruit_PCD8544 display = Adafruit_PCD8544(44,46,48,52,50);//SCLK,DIN,D/C,CS,RST
 
 // Hardware SPI (faster, but must use certain hardware pins):
 // SCK is LCD serial clock (SCLK) - this is pin 13 on Arduino Uno
@@ -73,7 +83,7 @@ void setup()   {
 
   // you can change the contrast around to adapt the display
   // for the best viewing!
-  display.setContrast(50);
+  display.setContrast(60);
 
   display.display(); // show splashscreen
   delay(2000);
