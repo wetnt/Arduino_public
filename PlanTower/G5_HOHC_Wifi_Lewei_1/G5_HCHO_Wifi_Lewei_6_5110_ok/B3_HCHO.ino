@@ -36,7 +36,7 @@ void LcdHCHO() {
   //LCD1602_Show(6, 1, String(dhtH) + String(F("C V:")) + String(fHCHOavr) + String(F(" ")) + String(numUnit) );
 }
 //------------------------------------------------
-char HCHObuf[10];
+byte HCHObuf[10];
 int HCHOinx = 0;
 void HCHOCheck(byte c) {
   if (HCHOinx == 9) GetHCHO();
