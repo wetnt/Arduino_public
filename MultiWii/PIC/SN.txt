@@ -1,0 +1,61 @@
+http://www.geek-workshop.com/thread-27046-1-1.html
+
+MWC精简版源代码详解
+
+MWC精简版主要文件
+MultiWii2.1.5m —— MWC主程序
+Alarms —— 指示灯控制程序
+EEPROM —— 配置参数保存与读取
+IMU —— 姿态解算程序
+Output —— PWM输出程序
+RX —— 遥控接收程序
+Sensors —— 传感器程序
+Serial —— 串口程序
+config.h —— 配置头文件
+def.h —— 定义头文件
+
+
+
+1. 配置推荐
+
+考虑到工作空间与飞行空间的限制，在此推荐Q250机架，其动力配置为：2204电机+12A电调+6045平头桨+3S 1500mAh 25C锂电池。
+MWC飞控为最简配置的Arduino nano V3.0模块 + GY-521 MPU-6050模块，模式为X模式的四轴飞行器。
+根据上面的定位，我们直接给出主要部件的配置清单和采购链接供参考。
+1.1 四轴机架
+最新款FPV穿越机架 HMF 图腾Q250 超轻高强度迷你小四轴机架
+https://detail.1688.com/offer/52 ... ?spm=0.0.0.0.ydHSIi
+1.2 无刷电机
+穿越机 MT2204 KV2300多旋翼航模 QAV250 四轴无刷电机马达
+https://item.taobao.com/item.htm ... amp;id=520033478731
+1.3 无刷电调
+12A无刷电调 SimonK程序四轴电调 250动力套装媲美银燕电调
+https://item.taobao.com/item.htm ... &id=45450634680
+1.4 6045 正反桨
+6045 正反桨 平头 250多轴穿越机 暴力螺旋桨 6*4.5正反桨
+https://item.taobao.com/item.htm ... amp;id=526971704234
+1.5 动力锂电池
+固定翼航模遥控飞机 3s 11.1V1500MAH 2200MAH 25C动力锂电池
+https://item.taobao.com/item.htm ... &id=44279804618
+1.6简易B3平衡充电器
+航模遥控飞机锂电池2S 3S 7.4V 11.1V 简易B3平衡充电器 航模配件
+https://item.taobao.com/item.htm ... amp;id=524755741493
+1.7 BB响低压报警器
+1-8S最新款二合一电压显示器/BB响低压/报警器/电显/双功能双喇叭
+https://item.taobao.com/item.htm ... &id=41938503557
+1.8 T插硅胶线
+航模 T型插头 公头 14 12 10 AWG硅胶线 线长100mm T插硅胶线
+https://item.taobao.com/item.htm ... &id=44297680232
+1.9 遥控器+接收机
+MC6A航模遥控器6通道2.4G接收机 kt板固定翼飞机四六轴 新款 批发
+https://item.taobao.com/item.htm ... ;abbucket=20#detail
+1.10 Arduino nano V3.0
+2014版本 Arduino nano V3.0 ATMEGA328P 改进版 无焊板 无配线
+https://item.taobao.com/item.htm ... ;abbucket=20#detail
+1.11 GY-521 MPU-6050模块
+GY-521 MPU-6050模块 三轴加速度 陀螺仪6DOF模块 有代码原理图
+https://item.taobao.com/item.htm ... &id=39241454009
+1.12 MWC精简版PCB底板
+MWC精简版PCB底板
+
+
+

@@ -69,6 +69,9 @@ void netJoinAP(String n, String p) {
   //lgln(wifiAP); lgln(wifiIP); //for (;;);
   //-------------------------------------------------------------------------
 }
+void netReBoot() {
+  wifiRun = wfs_cmd_back(S(AT_Rest), S(AT_RstB), S(AT_Empt), 5000 ); //reBoot
+}
 //-------------------------------------------------------------------------
 String senx = "";
 void HttpGetPost(String link, String text, int seconds) {

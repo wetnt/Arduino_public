@@ -21,10 +21,11 @@ String Lewei_Time = "";
 int Lewei_Loop_N = 0;
 //-------------------------------------------------------------------------
 String Lewei_Build() {
+  float JQup = (fHCHO < 0 || fHCHO > 1) ? 1 : fHCHO;
   String s = "";
-  s += Lewei_Json("WD", String(Si_Temperature)) + ',';
-  s += Lewei_Json("SD", String(Si_Humidity)) + ',';
-  s += Lewei_Json("JQ", String(fHCHO)) + ',';
+  s += Lewei_Json("WD", String((int)Si_Temperature)) + ',';
+  s += Lewei_Json("SD", String((int)Si_Humidity)) + ',';
+  s += Lewei_Json("JQ", String(JQup)) + ',';
   s += Lewei_Json("PM", String(g.cf25));
   s = "[" + s + "]"; //lgln(s);
   return s;
@@ -40,7 +41,7 @@ void Lewei_Loop() {
            + L(Lewei_LenA) + String(dn).length() + L(Lewei_LenB)
            + L(Lewei_Clos) + L(Lewei_Line)
            + Lewei_Data.length() + L(Lewei_Line) + L(Lewei_Line);
-  tn=tn-2;
+  tn = tn - 2;
   senx = S(AT_Send) + String( tn + String(tn).length() );
   String sendStr = "";
   sendStr += S(Lewei_Head) + S(Lewei_Usek) + S(Lewei_Host);
@@ -49,10 +50,10 @@ void Lewei_Loop() {
   sendStr += Lewei_Data + S(Lewei_Line) + S(Lewei_Line);
   //-------------------------------------------------------------------------------
   wifiRun = wfs_cmd_back(S(Lewei_Link), S(AT_Cnet), S(AT_Errs), 2000 );
-  wifiRun = wfs_cmd_back(senx,          S(AT_Stat), S(AT_Errs), 2000 );  
+  wifiRun = wfs_cmd_back(senx,          S(AT_Stat), S(AT_Errs), 2000 );
   wifiRun = wfs_cmd_backAB(sendStr, "Date: ", "GMT", 5000); wfs_serial_clear();
   //-------------------------------------------------------------------------------
-  lgln(wifiBack); Lewei_Time = GetStringAB(wifiBack,"2016","GMT");Lewei_Loop_N++;
+  lgln(wifiBack); Lewei_Time = GetStringAB(wifiBack, "2016", "GMT"); Lewei_Loop_N++;
   //-------------------------------------------------------------------------------
 }
 //=============================================================================================

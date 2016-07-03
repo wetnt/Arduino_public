@@ -1,6 +1,6 @@
 //=====================================================
 void Work_Loop() {
-  if ( ts_loop(60) ) Lewei_Loop();
+  if ( ts_loop(60) ) Lewei_WorkRest();
   if ( ts_loop(1)  ) {
     LCD_Show_All(); //LG_Show_All();
   }
@@ -9,6 +9,14 @@ void Work_Loop() {
   }
 }
 //=====================================================
+int LeweiTimes = 0;
+void Lewei_WorkRest() {
+  LeweiTimes++;
+  if (LeweiTimes > 20) {
+    LeweiTimes = 0; netReBoot();
+  }
+  Lewei_Loop();
+}
 void LCD_Show_All() {
   //lcd.clear();
   lcd.setCursor(0, 0);//lcd.print("T=");

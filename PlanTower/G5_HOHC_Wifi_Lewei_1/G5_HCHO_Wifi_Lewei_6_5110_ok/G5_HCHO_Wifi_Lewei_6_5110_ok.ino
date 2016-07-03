@@ -17,15 +17,17 @@ void setup() {
   HCHO_Ask(); Si7021_read();
   LCD_Show_All(); LG_Show_All();//Lewei_Loop();
   //------------------------------------------------
+  Dog_Start();
+  //------------------------------------------------
 }
 void loop() {
   lgFeed(); S1_feed(); S2_feed(); S3_feed();
-  Work_Loop();
+  Work_Loop(); Dog_Loop();
 }
 static void smartDelay(unsigned long ms) {
   unsigned long start = millis(); do {
     //------------------------------------------
-    lgFeed(); S1_feed(); S2_feed(); S3_feed();
+    lgFeed(); S1_feed(); S2_feed(); S3_feed();Dog_Loop();
     //------------------------------------------
   } while (millis() - start < ms);
 }
