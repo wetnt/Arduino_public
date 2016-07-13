@@ -9,7 +9,10 @@
 // pin 3 - LCD reset (RST)
 //PCD8544 nokia = PCD8544(7, 6, 5, 4, 3);
 
-PCD8544 nokia = PCD8544(8,9,10,11,12); 
+//PCD8544 nokia = PCD8544(8,9,10,11,12); 
+//RST,CE,DC,DIN,CLK;
+//CLK,DIN,DC,CS,RST
+PCD8544 nokia = PCD8544(A4,A3,A2,A1,A0); 
 // 3 pin LCD control, SCLK, DN, D/C (CS, RST)
 
 long t0;  //计时器
@@ -27,7 +30,7 @@ void loop(void) {
   
   t0 = micros();
     
-  nokia.setPixel(10, 10, BLACK);// draw a single pixel
+  //nokia.setPixel(10, 10, BLACK);// draw a single pixel
   nokia.setCursor(0, 17);
   
   nokia.print(t0);

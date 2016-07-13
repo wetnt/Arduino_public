@@ -1,5 +1,5 @@
 #include <SoftwareSeriala.h>
-SoftwareSerial myS(10, 11); //rx tx
+SoftwareSerial myS(11, 10); //rx tx
 
 void setup() {
 
