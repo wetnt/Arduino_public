@@ -1,26 +1,21 @@
 //===================================================================
-static const String codeName = "Nano_GPS_170MHz_ok!";
+static const String codeName = "Nano_WiFi_170MHz!";
 void setup() {
-  //-------------------------------------
-  Pin_setup();//必须首先执行，防止烧毁硬件
   //------------------------------------------------
   lgsetup(codeName);
-  B_analogRead_Setup();
+  Beep_Setup();
   //------------------------------------------------
-  //ss_init(String name, int rx, int tx, long btl, boolean lgKey);
-  ss_init(F("GPS,170MHz"), 11, 10, 9600, false);
-  DS18B20_Init();
-  //------------------------------------------------
-  Dog_Start();
+  ss_init(F("170MHz"), 12, 13, 9600, true);
+  //ss_init(F("WiFi,170MHz"), 11, 10, 9600, false);
   //------------------------------------------------
 }
 void loop() {
-  lgFeed(); ss_feed(); Dog_Loop();B_analogRead_loop();zLastCheck();
+  lgFeed(); ss_feed();
 }
 static void smartDelay(unsigned long ms) {
   unsigned long start = millis(); do {
     //------------------------------------------
-    lgFeed(); ss_feed(); Dog_Loop();
+    lgFeed(); ss_feed();
     //------------------------------------------
   } while (millis() - start < ms);
 }
