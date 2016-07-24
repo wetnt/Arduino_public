@@ -31,20 +31,20 @@ void WorkRun(int ButtonPin) {
   //------------------------------------------
   switch (ButtonPin) {
     //------------------------------------------
-    case BB1: WorkRun_Ctrl_C(); break;//粘贴
-    case BB2: WorkRun_Ctrl_V(); break;//复制
-    case BB3: WorkRun_Delete(); break;//删除
+    case BB1: WorkRun_Ctrl_Shift_F(); break;//格式化代码
+    case BB2: WorkRun_Alt_Shift_R(); break;//重命名
+    case BB3: WorkRun_Ctrl_Xg(); break;//注释代码
     //------------------------------------------
-    case BB4: WorkRun_Ctrl_Shift_F(); break;//格式化代码
-    case BB5: WorkRun_Alt_Shift_R(); break;//重命名
-    case BB6: WorkRun_Ctrl_Xg(); break;//注释代码
+    case BB4: WorkRun_F3(); break;//函数声明
+    case BB5: WorkRun_Ctrl_Alt_H(); break;//函数调用
+    case BB6: WorkRun_Ctrl_F(); break;//查找xxx
     //------------------------------------------
-    case BB7: WorkRun_F3(); break;//查找
-    case BB8: WorkRun_Ctrl_Alt_H(); break;//高亮
-    case BB9: WorkRun_Alt_Xg(); break;//折叠代码
+    case BB7: WorkRun_Alt_LeftArrow(); break;//后退历史记录 Alt+←
+    case BB8: WorkRun_Alt_LeftArrow(); break;//前进历史记录 Alt+→
+    case BB9: WorkRun_Alt_Xg(); break;//提示
     //------------------------------------------
-    case BBX: WorkRun_BOBOKing(); break;
-    case BBY: WorkRun_WetntA(); break;
+    case BBX: WorkRun_WetntA(); break;
+    case BBY: WorkRun_WetntC(); break;
     case BBZ: WorkRun_WetntB(); break;
       //------------------------------------------
   }
