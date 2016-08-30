@@ -43,7 +43,8 @@ void work() {
     myCupCheck();
   }
   if (ts_loop(30)) {
-    Lewei_Loop(); lewei_time_exp();
+    Lewei_Loop();
+    lewei_time_exp();
   }
   //------------------------------------------
 }
@@ -65,6 +66,7 @@ void TubeTemperatureShow() {
   int c = k / 10; if (c <= 0)c = -1;
   int d = k % 10;
   Tube4_set(a, b, c, d, 0);
+  Tube4_loop();
   lg("k="); lg(k); lg(","); lg(a);  lg(","); lg(b); lg(","); lg(c);  lg(","); lg(d); lg();
   //------------------------------------------
 }

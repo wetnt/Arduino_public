@@ -130,7 +130,7 @@ boolean wfs_cmd_backAB(String comStr, String strOK, String strNO, long timeout) 
   ck2.init(strNO);
   ck3.init(S(AT_Errs));
   ck4.init(S(AT_Busy));
-  ck5.init(S(AT_Clsd));  
+  ck5.init(S(AT_Clsd));
   //------------------------------------------------------
   wfs_serial_clear(); wfs.println(comStr);
   //-------------------------------------------------------
@@ -150,7 +150,11 @@ boolean wfs_cmd_backAB(String comStr, String strOK, String strNO, long timeout) 
       //if (ck4.check(c)) return false;
       if (ck5.check(c)) return false;
       //-----------------------------------
+      Tube4_loop();
+      //-----------------------------------
     }
+    //-------------------------------------------------------
+    Tube4_loop();
     //-------------------------------------------------------
   }
   //-------------------------------------------------------
@@ -182,7 +186,11 @@ boolean wfs_cmd_back(String comStr, String strOK, String strNO, long timeout) { 
       if (ck3.check(c)) return false;
       if (ck4.check(c)) return false;
       //-----------------------------------
+      Tube4_loop();
+      //-----------------------------------
     }
+    //-------------------------------------------------------
+    Tube4_loop();
     //-------------------------------------------------------
   }
   //-------------------------------------------------------

@@ -19,5 +19,6 @@ void lewei_time_exp() {
 }
 void lewei_time_show() {
   Tube4_set(la, lb, lc, ld, 2);
+  Tube4_loop();
 }
 
