@@ -235,7 +235,10 @@ void setup() {              //初始化
   initSensors();             //初始化传感器芯片
   previousTime = micros();   //读取当前时间值
   calibratingG = 512;        //校正采集次数512
-  ADCSRA |= _BV(ADPS2) ; ADCSRA &= ~_BV(ADPS1); ADCSRA &= ~_BV(ADPS0); //这种设置的AD读取速度使得分辨率损失小
+  ADCSRA |= _BV(ADPS2) ; 
+  ADCSRA &= ~_BV(ADPS1); 
+  ADCSRA &= ~_BV(ADPS0); 
+  //这种设置的AD读取速度使得分辨率损失小
   //_BV(ADPS2)实际上就是把ADPS2位置1
   f.SMALL_ANGLES_25=1;       //倾斜角小于25度
 }
