@@ -39,12 +39,12 @@ boolean Adafruit_GPS::parse(char *nmea) {
     sum += parseHex(nmea[strlen(nmea)-2]);
     
     // check checksum 
-    for (uint8_t i=1; i < (strlen(nmea)-4); i++) {
+    for (uint8_t i=2; i < (strlen(nmea)-4); i++) {
       sum ^= nmea[i];
     }
     if (sum != 0) {
       // bad checksum :(
-      //return false;
+      return false;
     }
   }
   int32_t degree;
@@ -350,14 +350,14 @@ void Adafruit_GPS::common_init(void) {
     speed = angle = magvariation = HDOP = 0.0; // float
 }
 
-void Adafruit_GPS::begin(uint16_t baud)
+void Adafruit_GPS::begin(uint32_t baud)
 {
 #ifdef __AVR__
   if(gpsSwSerial) 
     gpsSwSerial->begin(baud);
   else 
-    gpsHwSerial->begin(baud);
 #endif
+    gpsHwSerial->begin(baud);
 
   delay(10);
 }

@@ -1,0 +1,46 @@
+//-------------------------------------
+double getK(char a, char b, char c, char d) {
+  String s = "";
+  s.concat(a);  s.concat(b);  s.concat(c); s.concat(d);
+  double x = ((double)s.toInt()) / 10;
+  lg(x); lg();
+  return x;
+}
+//-------------------------------------
+int getV(char a, char b) {
+  return GetHexCharToInt(a) * 16 + GetHexCharToInt(b);
+}
+//-------------------------------------
+int GetHexCharToInt(char c) {
+  if (1 == 0) {}
+  else if (c == '0') return 0;
+  else if (c == '1') return 1;
+  else if (c == '2') return 2;
+  else if (c == '3') return 3;
+  else if (c == '4') return 4;
+  else if (c == '5') return 5;
+  else if (c == '6') return 6;
+  else if (c == '7') return 7;
+  else if (c == '8') return 8;
+  else if (c == '9') return 9;
+  else if (c == 'A') return 10;
+  else if (c == 'B') return 11;
+  else if (c == 'C') return 12;
+  else if (c == 'D') return 13;
+  else if (c == 'E') return 14;
+  else if (c == 'F') return 15;
+}
+String c2h2s(char c){
+  return String(c, HEX);
+}
+//String s = "Hello String";                   
+//String s =  String('a');                     
+//String s =  String("This is a string");      
+//String s =  String(stringTwo + " with more");
+//String s =  String(13);                      
+//String s =  String(analogRead(0), DEC);      
+//String s =  String(45, HEX);                 
+//String s =  String(255, BIN);                
+//String s =  String(millis(), DEC);           
+//String s =  String(5.698, 3);  
+
