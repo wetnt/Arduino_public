@@ -21,8 +21,11 @@ TM1637Display tube_4(D2, D3); //CLK, DIO
 //static const uint8_t D10  = 1;
 //===================================================================
 //------------------------------------------
-char ssid[] = "MMMM";
-char pass[] = "1234567890123";
+//char ssid[] = "MMMM";
+//char pass[] = "1234567890123";
+//------------------------------------------
+char ssid[] = "jtfybatai2.4";
+char pass[] = "1234jtfy";
 //------------------------------------------
 //IPAddress timeServer(129, 6, 15, 28); // time.nist.gov NTP server
 IPAddress timeServerIP; // time.nist.gov NTP server address
