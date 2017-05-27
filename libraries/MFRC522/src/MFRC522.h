@@ -75,8 +75,15 @@
 #ifndef MFRC522_h
 #define MFRC522_h
 
+#include "require_cpp11.h"
+#include "deprecated.h"
+// Enable integer limits
+#define __STDC_LIMIT_MACROS
+#include <stdint.h>
 #include <Arduino.h>
 #include <SPI.h>
+
+#define MFRC522_SPICLOCK SPI_CLOCK_DIV4			// MFRC522 accept upto 10MHz
 
 // Firmware data for self-test
 // Reference values based on firmware version
@@ -133,9 +140,12 @@ const byte FM17522_firmware_reference[] PROGMEM = {
 
 class MFRC522 {
 public:
+	// Size of the MFRC522 FIFO
+	static const byte FIFO_SIZE = 64;		// The FIFO is 64 bytes.
+
 	// MFRC522 registers. Described in chapter 9 of the datasheet.
 	// When using SPI all addresses are shifted one bit left in the "SPI address byte" (section 8.1.2.3)
-	enum PCD_Register {
+	enum PCD_Register : byte {
 		// Page 0: Command and status
 		//						  0x00			// reserved for future use
 		CommandReg				= 0x01 << 1,	// starts and stops command execution
@@ -210,7 +220,7 @@ public:
 	};
 	
 	// MFRC522 commands. Described in chapter 10 of the datasheet.
-	enum PCD_Command {
+	enum PCD_Command : byte {
 		PCD_Idle				= 0x00,		// no action, cancels current command execution
 		PCD_Mem					= 0x01,		// stores 25 bytes into the internal buffer
 		PCD_GenerateRandomID	= 0x02,		// generates a 10-byte random ID number
@@ -225,7 +235,7 @@ public:
 	
 	// MFRC522 RxGain[2:0] masks, defines the receiver's signal voltage gain factor (on the PCD).
 	// Described in 9.3.3.6 / table 98 of the datasheet at http://www.nxp.com/documents/data_sheet/MFRC522.pdf
-	enum PCD_RxGain {
+	enum PCD_RxGain : byte {
 		RxGain_18dB				= 0x00 << 4,	// 000b - 18 dB, minimum
 		RxGain_23dB				= 0x01 << 4,	// 001b - 23 dB
 		RxGain_18dB_2			= 0x02 << 4,	// 010b - 18 dB, it seems 010b is a duplicate for 000b
@@ -240,7 +250,7 @@ public:
 	};
 	
 	// Commands sent to the PICC.
-	enum PICC_Command {
+	enum PICC_Command : byte {
 		// The commands used by the PCD to manage communication with several PICCs (ISO 14443-3, Type A, section 6.4)
 		PICC_CMD_REQA			= 0x26,		// REQuest command, Type A. Invites PICCs in state IDLE to go to READY and prepare for anticollision or selection. 7 bit frame.
 		PICC_CMD_WUPA			= 0x52,		// Wake-UP command, Type A. Invites PICCs in state IDLE and HALT to go to READY(*) and prepare for anticollision or selection. 7 bit frame.
@@ -249,6 +259,7 @@ public:
 		PICC_CMD_SEL_CL2		= 0x95,		// Anti collision/Select, Cascade Level 2
 		PICC_CMD_SEL_CL3		= 0x97,		// Anti collision/Select, Cascade Level 3
 		PICC_CMD_HLTA			= 0x50,		// HaLT command, Type A. Instructs an ACTIVE PICC to go to state HALT.
+		PICC_CMD_RATS           = 0xE0,     // Request command for Answer To Reset.
 		// The commands used for MIFARE Classic (from http://www.mouser.com/ds/2/302/MF1S503x-89574.pdf, Section 9)
 		// Use PCD_MFAuthent to authenticate access to a sector, then use these commands to read/write/modify the blocks on the sector.
 		// The read/write commands can also be used for MIFARE Ultralight.
@@ -282,6 +293,7 @@ public:
 		PICC_TYPE_MIFARE_4K		,	// MIFARE Classic protocol, 4KB
 		PICC_TYPE_MIFARE_UL		,	// MIFARE Ultralight or Ultralight C
 		PICC_TYPE_MIFARE_PLUS	,	// MIFARE Plus
+		PICC_TYPE_MIFARE_DESFIRE,	// MIFARE DESFire
 		PICC_TYPE_TNP3XXX		,	// Only mentioned in NXP AN 10833 MIFARE Type Identification Procedure
 		PICC_TYPE_NOT_COMPLETE	= 0xff	// SAK indicates UID is not complete.
 	};
@@ -306,7 +318,7 @@ public:
 		byte		uidByte[10];
 		byte		sak;			// The SAK (Select acknowledge) byte returned from the PICC after successful selection.
 	} Uid;
-	
+
 	// A struct used for passing a MIFARE Crypto1 key
 	typedef struct {
 		byte		keyByte[MF_KEY_SIZE];
@@ -315,32 +327,30 @@ public:
 	// Member variables
 	Uid uid;								// Used by PICC_ReadCardSerial().
 	
-	// Size of the MFRC522 FIFO
-	static const byte FIFO_SIZE = 64;		// The FIFO is 64 bytes.
-	
 	/////////////////////////////////////////////////////////////////////////////////////
 	// Functions for setting up the Arduino
 	/////////////////////////////////////////////////////////////////////////////////////
 	MFRC522();
+	DEPRECATED_MSG("use MFRC522(byte chipSelectPin, byte resetPowerDownPin)")
 	MFRC522(byte resetPowerDownPin);
 	MFRC522(byte chipSelectPin, byte resetPowerDownPin);
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	// Basic interface functions for communicating with the MFRC522
 	/////////////////////////////////////////////////////////////////////////////////////
-	void PCD_WriteRegister(byte reg, byte value);
-	void PCD_WriteRegister(byte reg, byte count, byte *values);
-	byte PCD_ReadRegister(byte reg);
-	void PCD_ReadRegister(byte reg, byte count, byte *values, byte rxAlign = 0);
-	void setBitMask(unsigned char reg, unsigned char mask);
-	void PCD_SetRegisterBitMask(byte reg, byte mask);
-	void PCD_ClearRegisterBitMask(byte reg, byte mask);
+	void PCD_WriteRegister(PCD_Register reg, byte value);
+	void PCD_WriteRegister(PCD_Register reg, byte count, byte *values);
+	byte PCD_ReadRegister(PCD_Register reg);
+	void PCD_ReadRegister(PCD_Register reg, byte count, byte *values, byte rxAlign = 0);
+	void PCD_SetRegisterBitMask(PCD_Register reg, byte mask);
+	void PCD_ClearRegisterBitMask(PCD_Register reg, byte mask);
 	StatusCode PCD_CalculateCRC(byte *data, byte length, byte *result);
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	// Functions for manipulating the MFRC522
 	/////////////////////////////////////////////////////////////////////////////////////
 	void PCD_Init();
+	DEPRECATED_MSG("use PCD_Init(byte chipSelectPin, byte resetPowerDownPin)")
 	void PCD_Init(byte resetPowerDownPin);
 	void PCD_Init(byte chipSelectPin, byte resetPowerDownPin);
 	void PCD_Reset();
@@ -358,9 +368,9 @@ public:
 	StatusCode PICC_RequestA(byte *bufferATQA, byte *bufferSize);
 	StatusCode PICC_WakeupA(byte *bufferATQA, byte *bufferSize);
 	StatusCode PICC_REQA_or_WUPA(byte command, byte *bufferATQA, byte *bufferSize);
-	StatusCode PICC_Select(Uid *uid, byte validBits = 0);
+	virtual StatusCode PICC_Select(Uid *uid, byte validBits = 0);
 	StatusCode PICC_HaltA();
-	
+
 	/////////////////////////////////////////////////////////////////////////////////////
 	// Functions for communicating with MIFARE PICCs
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -399,17 +409,20 @@ public:
 	
 	// Advanced functions for MIFARE
 	void MIFARE_SetAccessBits(byte *accessBitBuffer, byte g0, byte g1, byte g2, byte g3);
+	DEPRECATED_MSG("will move to extra class in next version")
 	bool MIFARE_OpenUidBackdoor(bool logErrors);
+	DEPRECATED_MSG("will move to extra class in next version")
 	bool MIFARE_SetUid(byte *newUid, byte uidSize, bool logErrors);
+	DEPRECATED_MSG("will move to extra class in next version")
 	bool MIFARE_UnbrickUidSector(bool logErrors);
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	// Convenience functions - does not add extra functionality
 	/////////////////////////////////////////////////////////////////////////////////////
-	bool PICC_IsNewCardPresent();
-	bool PICC_ReadCardSerial();
+	virtual bool PICC_IsNewCardPresent();
+	virtual bool PICC_ReadCardSerial();
 	
-private:
+protected:
 	byte _chipSelectPin;		// Arduino pin connected to MFRC522's SPI slave select input (Pin 24, NSS, active low)
 	byte _resetPowerDownPin;	// Arduino pin connected to MFRC522's reset and power down input (Pin 6, NRSTPD, active low)
 	StatusCode MIFARE_TwoStepHelper(byte command, byte blockAddr, int32_t data);

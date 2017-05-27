@@ -19,10 +19,10 @@ char netLink[38] = "AT+CIPSTART=\"TCP\",\"www.baidu.com\",80";
 char cmdHttp[20] = "GET / HTTP/1.0\r\n\r\n";
 //=========================================================================
 void netStart() {
-  //wfs.println(testAT); smartDelay(2000);
+  wfs.println(testAT); smartDelay(2000);
   wfs.println(seesAP); smartDelay(2000);
   wfs.println(seesIP); smartDelay(2000);
-  //wfs.println(beWiFi); smartDelay(2000);
+  wfs.println(beWiFi); smartDelay(2000);
 }
 void netJoinAP(String s, String p) {
   jionAP = "AT+CWJAP=\"" + s + "\",\"" + p + "\"";

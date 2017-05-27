@@ -1,16 +1,17 @@
 //-------------------------------------------------------------------------
 #include <SoftwareSerial.h>
-SoftwareSerial wfs(10, 11); //RX,TX
+SoftwareSerial wfs(9,8); //RX,TX
 static const long GasBaud = 9600;
 //-------------------------------------------------------------------------
 #define  lgs  Serial
-static const long LGSBaud = 9600;
+static const long LGSBaud = 115200;
 //-------------------------------------------------------------------------
 void setup() {
   lgs.begin(LGSBaud); lg(F("Log.Serial.start! = ")); lg(LGSBaud); lgln("");
   wfs.begin(GasBaud); lg(F("Gas.Serial.start! = ")); lg(GasBaud); lgln("");
   netStart();
-  //netJoinAP(F("acDev"),F("AbroadCar2015()"));
+  netJoinAP(F("jtwx1"),F("jtwx1234"));
+  NetLinkTestBaidu();
 }
 void loop() {
   //-------------------------------

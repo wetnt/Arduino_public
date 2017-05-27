@@ -1,6 +1,6 @@
 //===================================================================
 #include <SoftwareSerial.h>
-SoftwareSerial rc(11, 10); //RX,TX
+SoftwareSerial rc(10, 11); //RX,TX
 static const long RcBaud = 9600;
 //===================================================================
 void rc_setup() {
