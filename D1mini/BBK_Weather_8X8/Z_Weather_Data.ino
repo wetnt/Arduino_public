@@ -18,6 +18,7 @@ uint8_t bmp5[10] = {0x00, 0x66, 0xFF, 0xFF, 0xFF, 0x7E, 0x3C, 0x18, 1, 5};
 uint8_t bmp6[10] = {0x00, 0x66, 0xFF, 0xFF, 0xFF, 0x7E, 0x3C, 0x18, 1, 5};
 //uint8_t smile_mp[] = {bmp1, bmp2, bmp3, bmp4, bmp5, bmp6};
 String str0 = "I love you 1314,MaYuan!";
+String str1 = "I love you 1314,MaYuan!";
 int colorKey = 3;
 //===============================================
 static const String strA[] = {"BMP0", "BMP1:", "BMP2:", "BMP3:", "BMP4:", "BMP5:", "BMP6:"};
@@ -41,7 +42,10 @@ void WeatherHttpExp(String bufferBack) {
   }
   //--------------------------------------------
   str0 = GetStringAB(bufferBack, "STRM:", ";"); lg("b1="); lg(str0); lg();
-  a    = GetStringAB(bufferBack, "STRC:", ";"); lg("b2="); lg(a); lg();
+  str1 = GetStringAB(bufferBack, "STRC:", ";"); lg("b2="); lg(str1); lg();
+  //--------------------------------------------
+  str0 = str0 + str1; lg(str0);
+  //--------------------------------------------
   colorKey = getV(a[0], a[1]);
   if (colorKey <= 0 || colorKey > 3) colorKey = 1;
   //--------------------------------------------

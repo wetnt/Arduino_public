@@ -4,7 +4,7 @@
 void setup() {
   lgsetup(F("WIFI SCAN 1001"));
   wifi_setup();
-  ws8x8_setup();
+  microduino_8x8_setup();
   tLoop_Setup();
 }
 
@@ -24,4 +24,3 @@ void loop() {
   }
   //------------------------------------------
 }
-

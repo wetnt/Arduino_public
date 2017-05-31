@@ -1,33 +1,27 @@
 //---------------------------------------------------------------------------------
-//#include <Wire.h>
+#include <Wire.h>
 #include "Adafruit_LEDBackpack.h"
 #include "Adafruit_GFX.h"
 Adafruit_BicolorMatrix matrix = Adafruit_BicolorMatrix();
 //---------------------------------------------------------------------------------
-uint8_t bmp1[10] = {0x00, 0x24, 0x7E, 0x7E, 0x3C, 0x18, 0x00, 0x00, 1, 5};
-uint8_t bmp2[10] = {0x00, 0x66, 0xFF, 0xFF, 0xFF, 0x7E, 0x3C, 0x18, 1, 5};
-uint8_t bmp3[10] = {0x00, 0x24, 0x7E, 0x7E, 0x3C, 0x18, 0x00, 0x00, 2, 5};
-uint8_t bmp4[10] = {0x00, 0x66, 0xFF, 0xFF, 0xFF, 0x7E, 0x3C, 0x18, 2, 5};
-uint8_t bmp5[10] = {0x00, 0x66, 0xFF, 0xFF, 0xFF, 0x7E, 0x3C, 0x18, 1, 5};
-uint8_t bmp6[10] = {0x00, 0x66, 0xFF, 0xFF, 0xFF, 0x7E, 0x3C, 0x18, 1, 5};
-String str0 = "I love you 1314,MaYuan!";
-int colorKey = 3;
-//---------------------------------------------------------------------------------
-void RGB8X8_setup() {
+void microduino_8x8_setup() {
+  Wire.begin(D4,D3); //定义I2C接口，并启动，ESP8266-12E的 2 和 14 口是原本定义为I2C接口，其他模块查看手册，用于读取BMP180的参数
   //--------------------------------------------
   matrix.begin(0x71);
   matrix.setRotation(0);
   matrix.setTextSize(1);
   //--------------------------------------------
+  matrix.setTextWrap(false);
+  matrix.setTextColor(1);
+  //--------------------------------------------
+  matrix.clear();
+  matrix.setCursor(0, 0);
+  matrix.print("M");
+  matrix.writeDisplay();
+  //--------------------------------------------
 }
 //---------------------------------------------------------------------------------
-void RGB8X8_loop() {
-  //---------------------------------------------------------------------------------
-  RGB8X8_bmp(bmp1); RGB8X8_bmp(bmp2); RGB8X8_bmp(bmp3); RGB8X8_bmp(bmp4); RGB8X8_bmp(bmp5);
-  RGB8X8_text(str0, colorKey, 70); smartDelay(500);
-  RGB8X8_bmp(bmp6);
-  //---------------------------------------------------------------------------------
-}
+//---------------------------------------------------------------------------------
 char output[9];
 void outputTo2String(long number) {
   for (int i = 0; i < 8; i++) {
@@ -35,9 +29,12 @@ void outputTo2String(long number) {
     output[i] = output[i] >> 7 - i;
     output[i] = (output[i] == 0) ? '0' : '1';
   }
-  output[8] = '\0';
+  //output[8] = '\0';
+  output[8] = ' ';
 }
-void RGB8X8_bmp(uint8_t s[10]) {
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+void microduino_8x8_bmp(uint8_t *s,uint16_t color) {
   //--------------------------------------------
   int colork = s[8]; if (colork < 0 || colork > 3) colork = 0;
   int showtm = s[9]; if (showtm < 0 || colork > 1000) showtm = 0;
@@ -61,7 +58,6 @@ void RGB8X8_bmp(uint8_t s[10]) {
   }
   //--------------------------------------------
   matrix.writeDisplay();
-  smartDelay(showtm * 100);
   //--------------------------------------------
 }
 void RGB8X8_text(String s, int colorKey, int delay_us) {
@@ -79,9 +75,6 @@ void RGB8X8_text(String s, int colorKey, int delay_us) {
     matrix.setCursor(7 - i, 0);
     matrix.print(s);
     matrix.writeDisplay();
-    smartDelay(delay_us);
   }
   //--------------------------------------------
 }
-//---------------------------------------------------------------------------------
-

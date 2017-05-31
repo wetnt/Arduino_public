@@ -1,11 +1,11 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 //------------------------------------------
-//char ssid[] = "MMMM";
-//char pass[] = "1234567890123";
+char ssid[] = "MMMM";
+char pass[] = "1234567890123";
 //------------------------------------------
-char ssid[] = "jtwx4.1";
-char pass[] = "jtwx1234";
+//char ssid[] = "jtwx4.1";
+//char pass[] = "jtwx1234";
 //------------------------------------------
 void wifi_setup() {
   wifi_addAP();
