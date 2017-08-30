@@ -13,7 +13,7 @@ void loop() {
     //TimeShow();
   }
   //------------------------------------------
-  if (ts_loop(60)) {
+  if (ts_loop(10)) {
     wifi_loop();
     http_get();
     http_exp();

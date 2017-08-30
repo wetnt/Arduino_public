@@ -7,7 +7,7 @@ boolean logKey = false;
 void ss_init(String ss_name, int rx, int tx, long btl, boolean lgKey) {
   logKey = lgKey; ss_Baud = btl;
   ss = SoftwareSerial(rx, tx);
-  ss.begin(ss_Baud);delay(200);
+  ss.begin(ss_Baud); delay(200);
   lg(ss_name); lg(F(".start = ")); lg(ss_Baud); lg();
 }
 //===================================================================

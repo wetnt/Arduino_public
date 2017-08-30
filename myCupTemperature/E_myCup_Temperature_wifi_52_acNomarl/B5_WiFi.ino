@@ -40,8 +40,7 @@ void wifi_Init(boolean lgKey, boolean startAP, boolean joinAP) {
   //-------------------------------------------------------------------------
   if (startAP) netStartAP();
   if (joinAP) netJoinAP(F("MMMM"), F("1234567890123"));
-  //if (joinAP) netJoinAP(F("acDev"), F("AbroadCar2015()"));
-  //if (joinAP) netJoinAP(F("acNormal"), F("AbroadCar2014()"));
+  if (joinAP) netJoinAP(F("JTWX"), F("jtwx1234"));
   //-------------------------------------------------------------------------
   lgln(wifiAP); lgln(wifiIP);
   //-------------------------------------------------------------------------

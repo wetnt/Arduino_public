@@ -8,7 +8,7 @@ extern uint8_t SmallFont[];
 //-------------------------------------------------------------------------
 TinyGPSPlus gps;
 time_t mytime = 0; 
-SoftwareSerial	GpsSerial(10,13); //RX,TX
+SoftwareSerial	GpsSerial(A10,A11); //RX,TX
 //-------------------------------------------------------------------------
 char URL[120];
 char UseH[] = "http://www.boboking.com/v/g.php?n=boboking&p=123xjp&g=";
@@ -19,8 +19,8 @@ void setup()
   //-------------------------------------------------------------------------
   myGLCD.InitLCD(50);  BBKLCDShow();  delay(500); 
   //-------------------------------------------------------------------------
-  GpsSerial.begin(4800);  delay(500);
-  Serial.begin(38400);   delay(500);
+  GpsSerial.begin(9600);  delay(500);
+  Serial.begin(115200);   delay(500);
   //-------------------------------------------------------------------------
   SubmitHttpInt();  BBKLCDShowString("HttpInt IsOK!");  delay(500);
   //-------------------------------------------------------------------------

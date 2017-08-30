@@ -4,7 +4,7 @@ void setup() {
   lgsetup(codeName);
   oled_Init();
   //------------------------------------------------
-  ss_init(F("G5"), 10, 11, 9600, false);//String name, int rx, int tx, long btl, boolean lgKey
+  ss_init(F("G5"), 33, 35, 9600, true); //String name, int rx, int tx, long btl, boolean lgKey
   //------------------------------------------------
 }
 void loop() {
@@ -14,7 +14,7 @@ void loop() {
 static void smartDelay(unsigned long ms) {
   unsigned long start = millis(); do {
     //------------------------------------------
-    lgFeed();ss_feed();
+    lgFeed(); ss_feed();
     //------------------------------------------
   } while (millis() - start < ms);
 }
