@@ -38,3 +38,7 @@ void wifi_ip_show() {
 }
 void wifi_loop() {
 }
+void wifi_restart() {
+  lg("WiFi restart");
+  lg(WiFi.restart()); lg();
+}

@@ -1,0 +1,30 @@
+//===================================================================
+#include <SoftwareSerial.h>
+SoftwareSerial rc(10,9); //RX,TX
+static const long RcBaud = 9600;
+//===================================================================
+//#define rc Serial2
+//static const long RcBaud = 9600;
+//===================================================================
+void rc_setup() {
+  rc.begin(RcBaud);
+  lgln(F("RC.rc(10,9).start!"));
+}
+//===================================================================
+void rcFeed() {
+  //----------------------------------------------------------
+  //rc.listen();
+  while (rc.available()) {
+    char c = rc.read();lg(c);
+    rc_cmd_feed(c); 
+  }
+  //----------------------------------------------------------
+}
+//static void rcSend(char chars[], boolean rnKey) {
+//  rc.print(chars);    if (rnKey) rc.println();
+//}
+static void rcSend(String str, boolean rnKey) {
+  rc.print(str);      if (rnKey) rc.println();
+}
+//===================================================================
+
