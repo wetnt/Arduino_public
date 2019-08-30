@@ -1,12 +1,20 @@
 //TB6612
 
-int PWMA = 9;
-int AIN1 = 8;
-int AIN2 = 7;
-int STBY = 6;
-int BIN1 = 5;
-int BIN2 = 4;
-int PWMB = 3;
+//int PWMA = 6;
+//int AIN1 = 9;
+//int AIN2 = 10;
+//int STBY = 0;
+//int BIN1 = 12;
+//int BIN2 = 13;
+//int PWMB = 11;
+
+int PWMA = 3;
+int AIN1 = 2;
+int AIN2 = 4;
+int STBY = 0;
+int BIN1 = 7;
+int BIN2 = 8;
+int PWMB = 5;
 
 int pinLed = 13;
 void setup() {

@@ -1,0 +1,30 @@
+#######################################
+# Syntax Coloring Map for HaLakeKit
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+HaLakeM5StackLibrary KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+begin KEYWORD2
+connectWifi KEYWORD2
+
+webServer_addService KEYWORD2
+webServer_setNotFound KEYWORD2
+webServer_open KEYWORD2
+webServer_requestHandle KEYWORD2
+
+SPIFFS_readFile KEYWORD2
+SPIFFS_writeFile KEYWORD2
+SPIFFS_removeFile KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
