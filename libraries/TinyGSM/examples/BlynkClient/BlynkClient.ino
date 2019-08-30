@@ -4,7 +4,7 @@
  *   https://github.com/blynkkk/blynk-library/releases/latest
  *
  * TinyGSM Getting Started guide:
- *   http://tiny.cc/tiny-gsm-readme
+ *   https://tiny.cc/tinygsm-readme
  *
  **************************************************************
  *
@@ -30,22 +30,28 @@
 
 // Select your modem:
 #define TINY_GSM_MODEM_SIM800
-//#define TINY_GSM_MODEM_SIM900
-//#define TINY_GSM_MODEM_A6
-//#define TINY_GSM_MODEM_M590
+// #define TINY_GSM_MODEM_SIM808
+// #define TINY_GSM_MODEM_SIM868
+// #define TINY_GSM_MODEM_SIM900
+// #define TINY_GSM_MODEM_SIM7000
+// #define TINY_GSM_MODEM_UBLOX
+// #define TINY_GSM_MODEM_SARAR4
+// #define TINY_GSM_MODEM_M95
+// #define TINY_GSM_MODEM_BG96
+// #define TINY_GSM_MODEM_A6
+// #define TINY_GSM_MODEM_A7
+// #define TINY_GSM_MODEM_M590
+// #define TINY_GSM_MODEM_MC60
+// #define TINY_GSM_MODEM_MC60E
+// #define TINY_GSM_MODEM_ESP8266
+// #define TINY_GSM_MODEM_XBEE
+// #define TINY_GSM_MODEM_SEQUANS_MONARCH
 
 #include <TinyGsmClient.h>
-#include <BlynkSimpleSIM800.h>
+#include <BlynkSimpleTinyGSM.h>
 
-// You should get Auth Token in the Blynk App.
-// Go to the Project Settings (nut icon).
-const char auth[] = "YourAuthToken";
-
-// Your GPRS credentials
-// Leave empty, if missing user or pass
-const char apn[]  = "YourAPN";
-const char user[] = "";
-const char pass[] = "";
+// Set serial for debug console (to the Serial Monitor, default speed 115200)
+#define SerialMon Serial
 
 // Hardware Serial on Mega, Leonardo, Micro
 #define SerialAT Serial1
@@ -54,12 +60,23 @@ const char pass[] = "";
 //#include <SoftwareSerial.h>
 //SoftwareSerial SerialAT(2, 3); // RX, TX
 
+
+// Your GPRS credentials
+// Leave empty, if missing user or pass
+const char apn[]  = "YourAPN";
+const char user[] = "";
+const char pass[] = "";
+
+// You should get Auth Token in the Blynk App.
+// Go to the Project Settings (nut icon).
+const char auth[] = "YourAuthToken";
+
 TinyGsm modem(SerialAT);
 
 void setup()
 {
   // Set console baud rate
-  Serial.begin(115200);
+  SerialMon.begin(115200);
   delay(10);
 
   // Set GSM module baud rate
@@ -68,8 +85,12 @@ void setup()
 
   // Restart takes quite some time
   // To skip it, call init() instead of restart()
-  Serial.println("Initializing modem...");
+  SerialMon.println("Initializing modem...");
   modem.restart();
+
+  String modemInfo = modem.getModemInfo();
+  SerialMon.print("Modem: ");
+  SerialMon.println(modemInfo);
 
   // Unlock your SIM card with a PIN
   //modem.simUnlock("1234");
@@ -81,4 +102,3 @@ void loop()
 {
   Blynk.run();
 }
-

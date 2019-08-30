@@ -2,7 +2,7 @@
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
 
-#define PIN A3
+#define PIN D1
 
 Adafruit_NeoMatrix matrix =
   Adafruit_NeoMatrix(8, 8, PIN,

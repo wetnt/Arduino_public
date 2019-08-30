@@ -16,10 +16,10 @@ void http_get() {
     return;
   }
   //------------------------------------------
-  //lg("Requesting URL: "); lgln(url_str);
+  lg("Requesting URL: "); lgln(url_str);
   //------------------------------------------
   client.print(get_str);
-  //lgln(getStr);
+  lgln(get_str);
   //------------------------------------------
   unsigned long timeout = millis();
   while (client.available() == 0) {
